@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> -<|+|>- Nazivač beba ---<|+|>- </title>
+
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA99/GAP/PnAC3qegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIgAAAAAAAhERIAAAAAACEREgAAAAAAIhESAAAAAAAhERIAAAAAACIREgAAAAAAIRESAAAAAAAiIRIAAAAAACEREgAAAAAAIiIiAAAAAAADMzAAAAAAAAMzMAAAAAAAADMAAAAAAAAAMwAAAAAAAAAAAAAAD//wAA/D8AAPgfAAD4HwAA+B8AAPgfAAD4HwAA+B8AAPgfAAD4HwAA+B8AAPw/AAD8PwAA/n8AAP5/AAD//wAA" rel="icon" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="confetti.js"></script>
+    <script type="text/javascript" src="untitled.js"></script>
+    
+    <style>
+        body {
+            background-image: url('https://jooinn.com/images/balloons-12.jpg');
+            background-size: cover;
+            font-family: Verdana, sans-serif;
+            overflow: hidden;  /* ovo uzjebe desnu ivicu */
+        }
+        
+        p {
+            display: block;
+            color: purple;
+            font-size: 24px;
+            text-align: center;
+            width: 45%;
+            background-color: rgba(256,256,256,.75);
+            margin: 56px auto 0 auto;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        button {
+            height: 48px;
+            margin: 11rem auto 2rem auto;
+            text-align: center;
+            display: block;
+            border-radius: 24px;
+            color: white;
+            background-color: purple;
+            padding: 12px;
+            border-style: none;
+            width: 200px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+        	background-color: gray;
+        }
+
+        #test {
+            line-height: 78px;
+            height:  78px;
+            font-size: 74px;
+            font-weight: 800;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        #jupi {
+            visibility: hidden;
+        }
+
+        #cnt {
+        	height: 24px;
+        	width: 24px;
+        	font-size: 12px;
+        	line-height: 24px;
+        	text-align: center;
+        }
+
+        #timer {
+            display: none;
+            width: 100%;
+            height: 100%;
+            font-size: 35em;
+            color: purple;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            text-align: center;
+            text-shadow: 0 0 30px white, 0 0 40px yellow, 0 0 50px blue;
+            opacity: 0;
+            animation: fade .5s linear;
+            overflow: hidden;
+        }
+
+        @keyframes fade {
+        	0%, 100% {opacity: 0;}
+        	25%, 75% {opacity: 1;}
+        }
+
+        #naslov {
+        	font-size: 100px;
+		    color: purple;
+		    position: absolute;
+		    width: 99%;
+		    top: -60px;
+		    z-index: -10;
+		    text-shadow: 0 0 15px white, 0 0 20px yellow, 0 0 25px blue;
+        }
+
+        #animacija {
+        	width: 100px;
+        	height: 100px;
+        	position: absolute;
+        	bottom: 0;
+        	left: 600px;
+        	background-color: gray;
+        	transition: "ease all 1s"
+        }
+
+        
+    </style>
+    
+</head>
+<body onLoad="">
+	<!-- <div id="animacija"></div> -->
+	<h1 id="naslov">Nazivač beba!!!</h1>
+    <div id="timer"></div>
+
+    <button id="create" onclick="sve(2, 3);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
+    <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
+    <audio id="yeeey" src='src/yeeey.wav' type="audio/wav"></audio>
+
+    <p>Zvaće se:</p>
+    <p id="test"><span id="prethodnik"></span><span id="sledbenik"></span></p>
+
+    <script type="text/javascript">
+
+    	new CircleType(document.getElementById('naslov')).radius(640);
+
+        const imena = ['Mlatimud', 'Bradilko', 'Sofronije', 'Alimpije', 'Ćelavko', 'Glavudžovski', 'Čićvu']
+        const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
+        const rnd_ime = imena[Math.floor(Math.random() * imena.length)]
+        
+        var counter = document.getElementById('cnt');
+        var t = document.getElementById("timer");
+        
+		const sledbenik = document.getElementById('sledbenik')
+        const divZaPisanje = document.getElementById('prethodnik')
+
+        function randomSlovo(){
+            return slova[Math.floor(Math.random() * slova.length)]
+        }
+
+        function bubnjeviPocni(){
+        	const bubnjevi = document.getElementById('drumRoll');
+        	bubnjevi.play();
+        }
+
+        function bubnjeviZavrsi(){
+        	const bubnjevi = document.getElementById('drumRoll');
+        	bubnjevi.pause();
+        }
+
+        function slagalica(trajanje, finalnoSlovo){
+        	for (let i = 0; i < trajanje; i++){
+        		setTimeout(function(){sledbenik.innerText = randomSlovo()}, i);
+        	}
+            setTimeout(function(){divZaPisanje.append(finalnoSlovo); sledbenik.innerText = ''}, trajanje);
+        }
+
+        function otkucajIme(trajanjePoSlovu){
+        	var j = 1
+        	const t = trajanjePoSlovu * 1000
+        	for (let i = 0; i < rnd_ime.length; i++){
+        		var q = (i / j) * t
+        		setTimeout(function(){slagalica(t, rnd_ime[i]);}, q);
+        		j += .5
+			}
+	    }
+
+	    function sve(odakle, poSlovu){
+	    	var pauza = 0
+	    	for (var i = 1; i <= rnd_ime.length; i++){
+	    		pauza += poSlovu / i
+	    	}
+	    	pauza += odakle
+	    	pauza *= 1000
+	    	odbrojavanje(odakle);
+	    	setTimeout(bubnjeviPocni, odakle * 1000);
+	    	setTimeout(function(){otkucajIme(poSlovu);}, odakle * 1000);
+	    	setTimeout(kraj, pauza);
+		}
+
+		function kraj(){
+			bubnjeviZavrsi();
+			confetti.start();
+			for (let i = 0; i < 500000; i += Math.random() * 1500){
+				setTimeout(function(){
+					var trube = new Audio('src/yeeey.wav');
+					trube.play();
+				}, i)
+			}
+			var tekst = document.getElementById('prethodnik')
+			var boje = "yellow,blue,green,aqua,blueViolet,Chartreuse,crimson,darkBlue,darkGreen,DarkSlateGray,DeepPink,DarkViolet,indigo,lawngreen,lightseagreen,lime,limegreen".split(',')
+			setInterval(function(){
+				var b = boje[Math.floor(Math.random() * boje.length)]
+				tekst.style.color = b
+			}, 150)
+			
+		}
+
+        function odbrojavanje(odKoliko){
+        	const o = odKoliko * 1000
+	        for (let i = odKoliko; i > 0; i--){
+	            setTimeout(function(){
+	            	t.innerText = i;
+					var audio = new Audio('src/beep.wav');
+					audio.play();
+	            	t.style.display = "block";
+	            }, o - (i * 1000));
+	            setTimeout(function(){
+	            	t.style.display = "none";
+	            }, o - (i * 1000 - 500));
+	        }
+	    }
+
+
+	    function goreDole(div, koliko, callback){
+	    	var style = window.getComputedStyle(div);
+	    	var start = Number(style.getPropertyValue('bottom').split('px')[0])
+	    	var id = setInterval(frame, 5)
+	    	function frame(){
+	    		if (start == koliko) {
+	    			clearInterval(id);
+	    		} else {
+	    			start++
+	    			div.style.bottom = start + 'px'
+	    		}
+	    	}
+	    	callback();
+	    }
+
+	    function animacija(div, kolikoPiksela){
+	    	var divac = window.getComputedStyle(document.getElementById(div));
+	    	console.log(divac)
+	    	var element = window.getComputedStyle(document.getElementById(div));
+	    	var startnaZadnjica = Number(element.getPropertyValue('bottom').split('px')[0])
+	    		if (startnaZadnjica == kolikoPiksela){
+	    			return
+	    		} else {
+	    			element.style.bottom = kolikoPiksela + 'px';
+	    		}
+	    	
+	    }
+
+	    animacija('animacija', 100)
+
+
+
+		function prikaziImena(){
+			return imena
+		}
+
+		function dodajImena(str){
+			const array = str.replace(/ /g, '').split(',')
+			for (i in array){
+				imena.push(array[i]);
+			}
+			return imena
+		}
+
+		function obrisiImena(str){
+			const array = str.replace(/ /g, '').split(',')
+			for (i in array){
+				imena.splice(imena.indexOf(array[i]), 1)
+			}
+			return imena
+		}
+
+		animacija('animacija', 100)
+
+
+    </script>
+
+</body>
+</html>
