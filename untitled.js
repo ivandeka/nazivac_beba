@@ -700,7 +700,7 @@
                                     u = (-.5 * l + s[r]) * e,
                                     c = -.5 * t._metrics[r].width / t._fontSize,
                                     a = "translateX(".concat(c, "em) rotate(").concat(u, "deg)");
-                                    var arsaColor = "#8700CB,#712C94,#54007F,#9B3DCB,#32004C,#5ADED4,#4DAAAB,#26596A,#163342,#003840,#005A5B,#007369,#008C72,#02A676,#B1076E,#710546,#F00A95,#FC0A9D,#D60985".split(',')
+                                    var arsaColor = "#FFEE33,#E9D817,#2A009C,#5017E9,#450003,#5C0002,#94090D,#D40D12,#FF1D23,#00305A,#004B8D,#0074D9,#4192D9,#7ABAF2".split(',')
                                 o.position = "absolute", o.bottom = -1 === e ? 0 : "auto", o.left = "50%", o.transform = a, o.transformOrigin = i, o.webkitTransform = a, o.webkitTransformOrigin = i, setInterval(function(){o.color = arsaColor[Math.floor(Math.random() * arsaColor.length)]}, 500);
                             })), this._forceHeight) {
                             var p = l > 180 ? c(n, l) : c(o, l) + this._lineHeight;

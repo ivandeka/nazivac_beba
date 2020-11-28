@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>--- Izaberi ime za bebu ---</title>
+    <title>&#9829; Izaberi ime za bebu &#9829;</title>
 
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA99/GAP/PnAC3qegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIgAAAAAAAhERIAAAAAACEREgAAAAAAIhESAAAAAAAhERIAAAAAACIREgAAAAAAIRESAAAAAAAiIRIAAAAAACEREgAAAAAAIiIiAAAAAAADMzAAAAAAAAMzMAAAAAAAADMAAAAAAAAAMwAAAAAAAAAAAAAAD//wAA/D8AAPgfAAD4HwAA+B8AAPgfAAD4HwAA+B8AAPgfAAD4HwAA+B8AAPw/AAD8PwAA/n8AAP5/AAD//wAA" rel="icon" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -106,6 +106,7 @@
 		    top: -60px;
 		    z-index: -10;
 		    text-shadow: 0 0 15px white, 0 0 20px yellow, 0 0 25px blue;
+            -webkit-text-stroke: 2px purple;
         }
 
         .bebac {
@@ -116,16 +117,115 @@
             width: auto;
         }
 
+        /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: purple;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: purple;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px purple;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#wrapper {
+    width: 370px;
+    text-align: center;
+    background-color: rgba(255,255,255, .85);
+    line-height: 3rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: purple;
+    border-radius: 1rem;
+}
+
+.zaToggler {
+    font-size: 3rem;
+    font-variant: small-caps;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 3rem;
+}
+
+#bata {
+    margin-right: 1rem;
+}
+
+#seka {
+    margin-left: 1rem;
+}
         
     </style>
     
 </head>
-<body onLoad="animirajBebu(15)">
-	<!-- <img class="bebac" src="src/bebac.png"></img> -->
-	<h1 id="naslov">Nazivač beba!!!</h1>
+<body onLoad="animirajBebu(10)">
+	<h1 id="naslov">&#9829; &#9829; &#9829; &#9829; &#9829; Nazivač beba &#9829; &#9829; &#9829; &#9829; &#9829;</h1>
+    
+    <div id="wrapper">
+        <span class="zaToggler" id="bata">bata</span>
+    <label class="switch">
+      <input type="checkbox" value="bata" id="toggler" onclick="promeniPol()">
+      <span class="slider round"></span>
+    </label>
+        <span class="zaToggler" id="seka">seka</span>
+    </div>
+    
     <div id="timer"></div>
 
-    <button id="create" onclick="sve(30, 10);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
+    <button id="create" onclick="sve(2, 3);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
     <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
     <audio id="yeeey" src='src/yeeey.wav' type="audio/wav"></audio>
 
@@ -137,9 +237,16 @@
     	new CircleType(document.getElementById('naslov')).radius(640);
 
         const imena = ['Mlatimud', 'Bradilko', 'Sofronije', 'Alimpije', 'Ćelavko', 'Glavudžovski', 'Čićvu']
+        const imenaZenska = ['Mlatimudica', 'Bradilka', 'Sofronija', 'Alimpijka', 'Ćelavica', 'Glavudžovska', 'Čićicavu']
         const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
-        const rnd_ime = imena[Math.floor(Math.random() * imena.length)]
-        
+
+        var togglerVrednost = document.getElementById("toggler").value
+        if (togglerVrednost === 'bata'){
+            var rnd_ime = imena[Math.floor(Math.random() * imena.length)]
+        } else {
+            var rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
+        }
+
         var counter = document.getElementById('cnt');
         var t = document.getElementById("timer");
         
@@ -192,7 +299,7 @@
 
 		function kraj(){
 			bubnjeviZavrsi();
-			confetti.start();
+			!function (){confetti.start();}();
 			for (let i = 0; i < 500000; i += Math.random() * 1500){
 				setTimeout(function(){
 					var trube = new Audio('src/yeeey.wav');
@@ -200,7 +307,7 @@
 				}, i)
 			}
 			var tekst = document.getElementById('prethodnik')
-			var boje = "#8700CB,#712C94,#54007F,#9B3DCB,#32004C,#5ADED4,#4DAAAB,#26596A,#163342,#003840,#005A5B,#007369,#008C72,#02A676,#B1076E,#710546,#F00A95,#FC0A9D,#D60985".split(',')
+			var boje = "#FFEE33,#E9D817,#2A009C,#5017E9,#450003,#5C0002,#94090D,#D40D12,#FF1D23,#00305A,#004B8D,#0074D9,#4192D9,#7ABAF2".split(',')
 			setInterval(function(){
 				var b = boje[Math.floor(Math.random() * boje.length)]
 				tekst.style.color = b
@@ -226,7 +333,7 @@
 	    function animacija(div){
 	    	const elemenat = document.getElementById(div)
 	    	const brzine = [0.5, 0.75, 0.9, 0.67, 1, 1.2, 1.5, 0.6, 0.25]
-	    	const visinaSlikeNiz = [100, 150, 200, 250, 300]
+	    	const visinaSlikeNiz = [100, 150, 200, 250, 300, 350, 400, 450]
 	    	const sirinaEkrana = window.innerWidth
 	    	elemenat.style.bottom = "0px"
     		var randomVisina = visinaSlikeNiz[Math.floor(Math.random() * visinaSlikeNiz.length)]
@@ -294,6 +401,17 @@
 			return imena
 		}
 
+        function promeniPol(){
+            var toggler = document.getElementById('toggler')
+            if (toggler.value === 'bata'){
+                toggler.value = 'seka'
+                rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
+            } else {
+                toggler.value = 'bata'
+                rnd_ime =  imena[Math.floor(Math.random() * imena.length)]
+            }
+            console.log(rnd_ime)
+        }
 
 
     </script>
