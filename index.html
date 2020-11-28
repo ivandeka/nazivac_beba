@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> -<|+|>- Nazivač beba ---<|+|>- </title>
+    <title>--- Izaberi ime za bebu ---</title>
 
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA99/GAP/PnAC3qegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIgAAAAAAAhERIAAAAAACEREgAAAAAAIhESAAAAAAAhERIAAAAAACIREgAAAAAAIRESAAAAAAAiIRIAAAAAACEREgAAAAAAIiIiAAAAAAADMzAAAAAAAAMzMAAAAAAAADMAAAAAAAAAMwAAAAAAAAAAAAAAD//wAA/D8AAPgfAAD4HwAA+B8AAPgfAAD4HwAA+B8AAPgfAAD4HwAA+B8AAPw/AAD8PwAA/n8AAP5/AAD//wAA" rel="icon" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,6 +13,11 @@
     <script type="text/javascript" src="untitled.js"></script>
     
     <style>
+
+        title {
+            font-size: 200%;
+        }
+
         body {
             background-image: url('https://jooinn.com/images/balloons-12.jpg');
             background-size: cover;
@@ -57,6 +62,7 @@
             font-size: 74px;
             font-weight: 800;
             font-family: 'Roboto Mono', monospace;
+            text-shadow: 2px 2px black;
         }
 
         #jupi {
@@ -114,12 +120,12 @@
     </style>
     
 </head>
-<body onLoad="animirajBebu(5)">
+<body onLoad="animirajBebu(15)">
 	<!-- <img class="bebac" src="src/bebac.png"></img> -->
 	<h1 id="naslov">Nazivač beba!!!</h1>
     <div id="timer"></div>
 
-    <button id="create" onclick="sve(2, 3);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
+    <button id="create" onclick="sve(30, 10);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
     <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
     <audio id="yeeey" src='src/yeeey.wav' type="audio/wav"></audio>
 
@@ -227,14 +233,15 @@
     		var start = -randomVisina
     		elemenat.style.bottom = `${-randomVisina}px`
     		elemenat.style.height = `${randomVisina}px`
+            var randomHorizontala = Math.floor(Math.random() * window.innerWidth)
+            elemenat.style.left = `${randomHorizontala}px`
 
 	    	setInterval(function(){
 	    		var brzina = brzine[Math.floor(Math.random() * brzine.length)]
 	    		var promenaVisine = Math.floor(Math.random() * start)
-	    		var randomHorizontala = Math.floor(Math.random() * window.innerWidth - 300)
 
 	    		!function gore(){
-	    			elemenat.style.transition = `linear all ${brzina}s`
+	    			elemenat.style.transition = `ease all ${brzina}s`
 	    			elemenat.style.bottom = `${promenaVisine}px`
 	    			setTimeout(function(){
 	    				elemenat.style.bottom = `${start}px`;
@@ -244,7 +251,7 @@
 	    			}, brzina * 1000)
 	    		}()
 
-	    }, 3500)}
+	    }, (Math.random() + .5) * 1000 * 3)}
 
         function napraviBebu(kolicina){
             var spisakIdjeva = []
