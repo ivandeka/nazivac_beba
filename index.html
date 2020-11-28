@@ -17,7 +17,7 @@
             background-image: url('https://jooinn.com/images/balloons-12.jpg');
             background-size: cover;
             font-family: Verdana, sans-serif;
-            overflow: hidden;  /* ovo uzjebe desnu ivicu */
+            overflow: hidden;
         }
         
         p {
@@ -48,6 +48,7 @@
 
         button:disabled {
         	background-color: gray;
+        	cursor: not-allowed;
         }
 
         #test {
@@ -101,22 +102,20 @@
 		    text-shadow: 0 0 15px white, 0 0 20px yellow, 0 0 25px blue;
         }
 
-        #animacija {
-        	width: 100px;
-        	height: 100px;
+        .bebac {
+        	width: auto;
+        	height: 150px;
         	position: absolute;
         	bottom: 0;
-        	left: 600px;
-        	background-color: gray;
-        	transition: "ease all 1s"
+            width: auto;
         }
 
         
     </style>
     
 </head>
-<body onLoad="">
-	<!-- <div id="animacija"></div> -->
+<body onLoad="animirajBebu(5)">
+	<!-- <img class="bebac" src="src/bebac.png"></img> -->
 	<h1 id="naslov">Nazivač beba!!!</h1>
     <div id="timer"></div>
 
@@ -195,7 +194,7 @@
 				}, i)
 			}
 			var tekst = document.getElementById('prethodnik')
-			var boje = "yellow,blue,green,aqua,blueViolet,Chartreuse,crimson,darkBlue,darkGreen,DarkSlateGray,DeepPink,DarkViolet,indigo,lawngreen,lightseagreen,lime,limegreen".split(',')
+			var boje = "#8700CB,#712C94,#54007F,#9B3DCB,#32004C,#5ADED4,#4DAAAB,#26596A,#163342,#003840,#005A5B,#007369,#008C72,#02A676,#B1076E,#710546,#F00A95,#FC0A9D,#D60985".split(',')
 			setInterval(function(){
 				var b = boje[Math.floor(Math.random() * boje.length)]
 				tekst.style.color = b
@@ -218,37 +217,54 @@
 	        }
 	    }
 
+	    function animacija(div){
+	    	const elemenat = document.getElementById(div)
+	    	const brzine = [0.5, 0.75, 0.9, 0.67, 1, 1.2, 1.5, 0.6, 0.25]
+	    	const visinaSlikeNiz = [100, 150, 200, 250, 300]
+	    	const sirinaEkrana = window.innerWidth
+	    	elemenat.style.bottom = "0px"
+    		var randomVisina = visinaSlikeNiz[Math.floor(Math.random() * visinaSlikeNiz.length)]
+    		var start = -randomVisina
+    		elemenat.style.bottom = `${-randomVisina}px`
+    		elemenat.style.height = `${randomVisina}px`
 
-	    function goreDole(div, koliko, callback){
-	    	var style = window.getComputedStyle(div);
-	    	var start = Number(style.getPropertyValue('bottom').split('px')[0])
-	    	var id = setInterval(frame, 5)
-	    	function frame(){
-	    		if (start == koliko) {
-	    			clearInterval(id);
-	    		} else {
-	    			start++
-	    			div.style.bottom = start + 'px'
-	    		}
-	    	}
-	    	callback();
-	    }
+	    	setInterval(function(){
+	    		var brzina = brzine[Math.floor(Math.random() * brzine.length)]
+	    		var promenaVisine = Math.floor(Math.random() * start)
+	    		var randomHorizontala = Math.floor(Math.random() * window.innerWidth - 300)
 
-	    function animacija(div, kolikoPiksela){
-	    	var divac = window.getComputedStyle(document.getElementById(div));
-	    	console.log(divac)
-	    	var element = window.getComputedStyle(document.getElementById(div));
-	    	var startnaZadnjica = Number(element.getPropertyValue('bottom').split('px')[0])
-	    		if (startnaZadnjica == kolikoPiksela){
-	    			return
-	    		} else {
-	    			element.style.bottom = kolikoPiksela + 'px';
-	    		}
-	    	
-	    }
+	    		!function gore(){
+	    			elemenat.style.transition = `linear all ${brzina}s`
+	    			elemenat.style.bottom = `${promenaVisine}px`
+	    			setTimeout(function(){
+	    				elemenat.style.bottom = `${start}px`;
+	    				setTimeout(function(){
+	    					elemenat.style.left = `${randomHorizontala}px`
+	    				}, brzina * 1000)
+	    			}, brzina * 1000)
+	    		}()
 
-	    animacija('animacija', 100)
+	    }, 3500)}
 
+        function napraviBebu(kolicina){
+            var spisakIdjeva = []
+            for (var i = kolicina; i > 0; i--){
+                var bb = document.createElement('img')
+                document.body.appendChild(bb)
+                bb.src = 'src/bebac.png'
+                bb.classList.add('bebac')
+                idIme = `${i}-bebonjak`
+                bb.id = idIme
+                spisakIdjeva.push(idIme)
+            }
+            return spisakIdjeva
+        }   
+
+
+        function animirajBebu(kolicina){
+            var sviIdjevi = napraviBebu(kolicina);
+            sviIdjevi.forEach(animacija);
+        }
 
 
 		function prikaziImena(){
@@ -271,7 +287,6 @@
 			return imena
 		}
 
-		animacija('animacija', 100)
 
 
     </script>
