@@ -202,18 +202,112 @@ input:checked + .slider:before {
 
 #bata {
     margin-right: 1rem;
+    transition: ease all .2s;
 }
 
 #seka {
     margin-left: 1rem;
+    transition: ease all .2s;
+}
+
+#modalWrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .5);
+    z-index: 200;
+    display: none;
+}
+
+#modal {
+    width: 85%;
+    height: 85%;
+    position: absolute;
+    top: 7.5%;
+    left: 7.5%;
+    background-color: white;
+    border-radius: 1rem;
+    float: left;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+#iksic {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: purple;
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-weight: 900;
+    border-radius: 50%;
+}
+
+#dugmeZaModal {
+    position: absolute;
+    top: 10px;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, .85);
+    color: purple;
+    font-size: 2rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-weight: 900;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+}
+
+#dugmeZaModal:focus {
+    border: none;
+}
+
+#gornjaLinija {
+    width: 100%;
+    margin: 0 auto;
+    height: 2rem;
+    line-height: 2rem;
+}
+
+#unosImena {
+    float: left;
+    display: inline-block;
+}
+
+#slanjeImena {
+    float: left;
+    display: inline-block;
 }
         
     </style>
     
 </head>
-<body onLoad="animirajBebu(10)">
+<body onLoad="animirajBebu()">
+
+    <div id="dugmeZaModal" onclick="otvoriModal()">IMENA</div>
+
 	<h1 id="naslov">&#9829; &#9829; &#9829; &#9829; &#9829; Nazivač beba &#9829; &#9829; &#9829; &#9829; &#9829;</h1>
     
+    <div id="modalWrap"></div>
+        <div id="modal">
+            <div id="iksic">x</div>
+            <!-- <div id="gornjaLinija">
+                <input id="unosImena" title="Kako biste dodali imena, unesite ih razdvojena zarezom." placeholder='Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' >
+                <button id="slanjeImena">Dodaj imena</button>
+            </div>
+            <div id="levaKolona"></div>
+            <div id="desnaKolona"></div> -->
+        </div>
+
     <div id="wrapper">
         <span class="zaToggler" id="bata">bata</span>
     <label class="switch">
@@ -240,10 +334,21 @@ input:checked + .slider:before {
         const imenaZenska = ['Mlatimudica', 'Bradilka', 'Sofronija', 'Alimpijka', 'Ćelavica', 'Glavudžovska', 'Čićicavu']
         const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
 
+        document.getElementById('iksic').addEventListener('click', zatvoriModal);
+        document.getElementById('create').addEventListener('click', iskljuciToggler);
+        document.getElementById('create').addEventListener('click', function(){
+            const dugme = document.getElementById('dugmeZaModal')
+            dugme.style.cursor = "not-allowed"
+            dugme.onclick = ""
+        });
+        document.getElementById('modalWrap').addEventListener('click', zatvoriModal);
+
         var togglerVrednost = document.getElementById("toggler").value
         if (togglerVrednost === 'bata'){
+            document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
             var rnd_ime = imena[Math.floor(Math.random() * imena.length)]
         } else {
+            document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
             var rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
         }
 
@@ -380,6 +485,32 @@ input:checked + .slider:before {
             sviIdjevi.forEach(animacija);
         }
 
+        function otvoriModal(){
+            const modal = document.getElementById('modal')
+            const modalOmotac = document.getElementById('modalWrap')
+            for (let i = 1; i <= 100; i++){
+                setTimeout(function(){
+                    modalOmotac.style.display="block";
+                    modal.style.display="block";
+                    modalOmotac.style.backgroundColor="rgba(0,0,0," + i / 200 + ")"
+                    modal.style.backgroundColor="rgba(255,255,255," + i / 100 + ")"
+                }, i / 4)
+            }
+        }
+
+        function zatvoriModal(){
+            const modal = document.getElementById('modal')
+            const modalOmotac = document.getElementById('modalWrap')
+            modalOmotac.style.display="none";
+            modal.style.display="none";
+        }
+
+        function iskljuciToggler(){
+            document.getElementById('toggler').disabled="true";
+            const slajder = document.getElementsByClassName('slider')[0]
+            slajder.style.backgroundColor="gray";
+            slajder.style.cursor="not-allowed"
+        }
 
 		function prikaziImena(){
 			return imena
@@ -405,12 +536,15 @@ input:checked + .slider:before {
             var toggler = document.getElementById('toggler')
             if (toggler.value === 'bata'){
                 toggler.value = 'seka'
+                document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
+                document.getElementById('seka').style.color = 'purple'
                 rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
             } else {
                 toggler.value = 'bata'
+                document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
+                document.getElementById('bata').style.color = 'purple'
                 rnd_ime =  imena[Math.floor(Math.random() * imena.length)]
             }
-            console.log(rnd_ime)
         }
 
 
