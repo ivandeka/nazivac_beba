@@ -1,0 +1,382 @@
+        title {
+            font-size: 200%;
+        }
+
+        body {
+            background-image: url('https://jooinn.com/images/balloons-12.jpg');
+            background-size: cover;
+            font-family: Verdana, sans-serif;
+            overflow: hidden;
+        }
+        
+        p {
+            display: block;
+            color: purple;
+            font-size: 24px;
+            text-align: center;
+            width: 45%;
+            background-color: rgba(256,256,256,.75);
+            margin: 56px auto 0 auto;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        button {
+            height: 48px;
+            text-align: center;
+            display: block;
+            border-radius: 24px;
+            color: white;
+            background-color: purple;
+            padding: 12px;
+            border-style: none;
+            width: 200px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        #create {
+            margin: 11rem auto 2rem auto;            
+        }
+
+        button:disabled {
+        	background-color: gray;
+        	cursor: not-allowed;
+        }
+
+        #test {
+            line-height: 78px;
+            height:  78px;
+            font-size: 74px;
+            font-weight: 800;
+            font-family: 'Roboto Mono', monospace;
+            text-shadow: 2px 2px black;
+        }
+
+        #jupi {
+            visibility: hidden;
+        }
+
+        #cnt {
+        	height: 24px;
+        	width: 24px;
+        	font-size: 12px;
+        	line-height: 24px;
+        	text-align: center;
+        }
+
+        #timer {
+            display: none;
+            width: 100%;
+            height: 100%;
+            font-size: 35em;
+            color: purple;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            text-align: center;
+            text-shadow: 0 0 30px white, 0 0 40px yellow, 0 0 50px blue;
+            opacity: 0;
+            animation: fade .5s linear;
+            overflow: hidden;
+        }
+
+        @keyframes fade {
+        	0%, 100% {opacity: 0;}
+        	25%, 75% {opacity: 1;}
+        }
+
+        #naslov {
+        	font-size: 100px;
+		    color: purple;
+		    position: absolute;
+		    width: 99%;
+		    top: -60px;
+		    z-index: -10;
+		    text-shadow: 0 0 15px white, 0 0 20px yellow, 0 0 25px blue;
+            -webkit-text-stroke: 2px purple;
+        }
+
+        .bebac {
+        	width: auto;
+        	height: 150px;
+        	position: absolute;
+        	bottom: 0;
+            width: auto;
+        }
+
+        /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: purple;
+  -moz-transition: .4s;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -moz-transition: .4s;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: purple;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px purple;
+}
+
+input:checked + .slider:before {
+  -moz-transform: translateX(25px);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#wrapper {
+    width: 370px;
+    text-align: center;
+    background-color: rgba(255,255,255, .85);
+    line-height: 3rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: purple;
+    border-radius: 1rem;
+}
+
+.zaToggler {
+    font-size: 3rem;
+    font-variant: small-caps;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 3rem;
+}
+
+#bata {
+    margin-right: 1rem;
+    transition: ease all .2s;
+}
+
+#seka {
+    margin-left: 1rem;
+    transition: ease all .2s;
+}
+
+#modalWrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .5);
+    z-index: 200;
+    display: none;
+}
+
+#modal {
+    width: 85%;
+    height: 85%;
+    position: absolute;
+    top: 7.5%;
+    left: 7.5%;
+    background-color: white;
+    border-radius: 1rem;
+    float: left;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+    display: none;
+}
+
+#iksic {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: purple;
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-weight: 900;
+    border-radius: 50%;
+}
+
+#dugmeZaModal {
+    position: absolute;
+    top: 10px;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, .85);
+    color: purple;
+    font-size: 2rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-weight: 900;
+    cursor: pointer;
+    width: 200px;
+    text-align: center;
+}
+
+#dugmeZaModal:focus {
+    border: none;
+}
+
+#gornjaLinija {
+    width: 90%;
+    margin: 10px auto;
+    height: 3.5rem;
+    display: block;
+}
+
+#unosImena {
+    float: left;
+    display: inline-block;
+    height: 2rem;
+    width: 80%;
+    border: 1px solid gray;
+    border-radius: .5rem;
+    padding-left: 10px;
+}
+
+#slanjeImena {
+    float: right;
+    display: inline-block;
+    height: 2rem;
+    line-height: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+#polImena {
+    width: 90%;
+    color: purple;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.objasnjenje {
+    font-size: 8px;
+    color: gray;
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    display: inline-block;
+}
+
+#omotacKolona {
+    width: 95%;
+    height: 80%;
+    margin: 0 auto;
+}
+
+#levaKolona {
+    float: left;
+    width: 78%;
+    height: 100%;
+    display: block;
+    border: 1px solid gray;
+    border-radius: 1rem;
+}
+
+#levaKolonaNaslov {
+    color: purple;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 0;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+#desnaKolona {
+    float: right;
+    width: 20%;
+    height: 100%;
+    display: block;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    overflow-y: scroll;
+}
+
+#dodataImena {
+    color: purple;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 0;
+    text-align: center;
+}
+
+.imeNaListi {
+    margin-left: 10px;
+    text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
