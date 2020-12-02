@@ -12,12 +12,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/confetti.js"></script>
     <script type="text/javascript" src="js/circletype.js"></script>
+    <script type="text/javascript" src="data/imena.js"></script>
+    <script type="text/javascript" src="data/jezici.js"></script>
 
 </head>
 
 <body onload="animirajBebu(10)">
 
-    <div id="dugmeZaModal" onclick="otvoriModal()">IMENA</div>
+    <div id="dugmeZaModal" onclick="otvoriModal();">IMENA</div>
 
 	<h1 id="naslov">&#9829; &#9829; &#9829; &#9829; &#9829; Nazivač beba &#9829; &#9829; &#9829; &#9829; &#9829;</h1>
     
@@ -42,20 +44,27 @@
 
     <div id="wrapper">
         <span class="zaToggler" id="bata">bata</span>
-    <label class="switch">
-      <input type="checkbox" value="bata" id="toggler" onclick="promeniPol()">
-      <span class="slider round"></span>
-    </label>
+        <label class="switch">
+        <input type="checkbox" value="bata" id="toggler" onclick="promeniPol()">
+        <span class="slider round"></span>
+        </label>
         <span class="zaToggler" id="seka">seka</span>
     </div>
     
+
+    <select id="jezik" name="jezik">
+        <option value="srpski-latinica" data-tip="latinica" selected="selected">SRPSKI</option>
+        <option value="srpski-cirilica" data-tip="cirilica">СРПСКИ</option>
+        <option value="engleski" data-tip="">ENGLISH</option>
+    </select>
+    
     <div id="timer"></div>
 
-    <button id="create" onclick="sve(2, 3);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
+    <button id="create" onclick="sve(10, 10);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
     <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
     <audio id="yeeey" src='src/yeeey.wav' type="audio/wav"></audio>
 
-    <p>Zvaće se:</p>
+    <p class="zvaceSe">Zvaće se:</p>
     <p id="test"><span id="prethodnik"></span><span id="sledbenik"></span></p>
 
 
