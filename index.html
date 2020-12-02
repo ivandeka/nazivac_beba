@@ -17,9 +17,21 @@
 
 </head>
 
-<body onload="animirajBebu(10)">
+<body onload="promenaJezika;animirajBebu()">
 
     <div id="dugmeZaModal" onclick="otvoriModal();">IMENA</div>
+
+    <div id="jezici">
+        <div class="omotacZaJezik">
+            <button class="zastava" data-jezik="srpski" data-tip="latinica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></button><span class="tipJezika">Latinica</span>
+        </div>
+        <div class="omotacZaJezik">
+            <button class="zastava" data-jezik="srpski" data-tip="cirilica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></button><span class="tipJezika">Ћирилица</span>
+        </div>
+        <div class="omotacZaJezik">
+            <button class="zastava" data-jezik="engleski"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206626.svg"></button>
+        </div>
+    </div>
 
 	<h1 id="naslov">&#9829; &#9829; &#9829; &#9829; &#9829; Nazivač beba &#9829; &#9829; &#9829; &#9829; &#9829;</h1>
     
@@ -51,16 +63,9 @@
         <span class="zaToggler" id="seka">seka</span>
     </div>
     
-
-    <select id="jezik" name="jezik">
-        <option value="srpski-latinica" data-tip="latinica" selected="selected">SRPSKI</option>
-        <option value="srpski-cirilica" data-tip="cirilica">СРПСКИ</option>
-        <option value="engleski" data-tip="">ENGLISH</option>
-    </select>
-    
     <div id="timer"></div>
 
-    <button id="create" onclick="sve(10, 10);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
+    <button id="create" onclick="sve(2, 3);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
     <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
     <audio id="yeeey" src='src/yeeey.wav' type="audio/wav"></audio>
 

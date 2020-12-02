@@ -6,6 +6,9 @@ const imena = ['Mlatimud', 'Bradilko', 'Sofronije', 'Alimpije', 'Ćelavko', 'Gla
 const imenaZenska = ['Mlatimudica', 'Bradilka', 'Sofronija', 'Alimpijka', 'Ćelavica', 'Glavudžovska', 'Čićicavu']
 const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
 var pol = document.getElementById('toggler').value
+var trenutniJezik = 'srpski'
+var trenutniTip = 'latinica'
+var trenutniPol = 'bata'
 
 document.getElementById('iksic').addEventListener('click', zatvoriModal);
 // document.getElementById('create').addEventListener('click', iskljuciToggler);
@@ -273,7 +276,7 @@ function napraviKolacic(jezikImena, pol, imena, tipPisma){
 }
 
 function dodajKolacic(jezik, pol, imena, tipPisma){
-	if (imena === ''){
+	if (imena === '' && proveraPraznine !== ''){
 		console.log('Nije uneto ime. Promena nije izvrsena.')
 		return
 	}
@@ -295,7 +298,6 @@ function dodajKolacic(jezik, pol, imena, tipPisma){
 		}
 	}())
 	var imenaZaDodavanje = Array.from(new Set([...pocetnaImena, ...unetaImena])).join()
-	console.log(imenaZaDodavanje)
 	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
 }
 
@@ -316,6 +318,55 @@ function ukloniKolacic(jezik, pol, imena, tipPisma){
 	var imenaZaDodavanje = pocetnaImena.filter(function(item){return !unetaImena.includes(item)}).join()
 	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
 }
+	
+
+var dugmici = document.getElementsByClassName('zastava')
+for (i = 0; i < dugmici.length; i++){
+	dugmici[i].addEventListener('click', promenaJezika)
+}
+
+
+function promenaJezika(){
+	const kolacic = document.cookie
+	if (!kolacic.includes('jezik=')){
+		document.cookie = 'jezik=srpskilatinica; path=/; sameSite=Strict;'
+	} else {
+		var jezik = this.dataset.jezik
+		var tip = this.dataset.tip || ''
+		document.cookie = `jezik=${jezik + tip}; path=/; sameSite=Strict;`	
+	}
+}
+
+
+
+
+dodajKolacic('srpski', 'bata', 'Zvonko,Dragivoje', 'latinica')
+dodajKolacic('srpski', 'bata', 'Звонко,Драгивоје', 'cirilica')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
