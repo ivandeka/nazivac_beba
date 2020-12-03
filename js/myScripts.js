@@ -6,6 +6,12 @@ const imena = ['Mlatimud', 'Bradilko', 'Sofronije', 'Alimpije', 'Ćelavko', 'Gla
 const imenaZenska = ['Mlatimudica', 'Bradilka', 'Sofronija', 'Alimpijka', 'Ćelavica', 'Glavudžovska', 'Čićicavu']
 const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
 var pol = document.getElementById('toggler').value
+
+var zastave = document.getElementsByClassName('zastava')
+
+for (i = 0; i < zastave.length; i++){
+	zastave[i].addEventListener('click', promenaJezika)
+}
 var trenutniJezik = 'srpski'
 var trenutniTip = 'latinica'
 var trenutniPol = 'bata'
@@ -16,8 +22,13 @@ document.getElementById('create').addEventListener('click', function(){
 
 	iskljuciToggler();
     const dugme = document.getElementById('dugmeZaModal')
+    const dugmeZaJezike = document.getElementById('jezici')
     dugme.style.cursor = "not-allowed"
     dugme.onclick = ""
+    for (i = 0; i < zastave.length; i++){
+    	zastave[i].style.cursor = "not-allowed"
+    	zastave[i].removeEventListener('click', promenaJezika)
+    }
 });
 document.getElementById('modalWrap').addEventListener('click', zatvoriModal);
 
@@ -58,6 +69,21 @@ function slagalica(trajanje, finalnoSlovo){
 }
 
 function otkucajIme(trajanjePoSlovu){
+	kolacic = document.cookie.replace(/ /g, '').split(';')
+	var pol = kolacic[0].split('=')[1]
+	var jezik = kolacic[1].split('=')[1]
+	var tip = kolacic[2].split('=')[1]
+	tip = (function(){
+		if (tip !== 'No'){
+			return '_' + tip
+		} return ''
+	}())
+	var item = pol + '_' + jezik + tip
+	console.log(item)
+	var listaImena = JSON.parse(localStorage.getItem(item))
+
+	// rnd_ime = Math.floor(Math.random() * listaImena.length)
+
 	var j = 1
 	const t = trajanjePoSlovu * 1000
 	for (let i = 0; i < rnd_ime.length; i++){
@@ -164,11 +190,7 @@ function animirajBebu(kolicina){
 function otvoriModal(){
     const modal = document.getElementById('modal')
     const modalOmotac = document.getElementById('modalWrap')
-    if (pol === 'bata'){
-    	ispisiDodataImena(imena)
-    } else {
-    	ispisiDodataImena(imenaZenska)
-    }
+    prikaziUnetaImena();
     for (let i = 1; i <= 100; i++){
         setTimeout(function(){
             modalOmotac.style.display="block";
@@ -193,46 +215,203 @@ function iskljuciToggler(){
     slajder.style.cursor="not-allowed"
 }
 
-function prikaziImena(){
-	return imena
-}
+// function prikaziImena(){
+// 	return imena
+// }
 
-function dodajImena(str){
-	const array = str.replace(/ /g, '').split(',')
-	for (i in array){
-		imena.push(array[i]);
+// function dodajImena(str){
+// 	const array = str.replace(/ /g, '').split(',')
+// 	for (i in array){
+// 		imena.push(array[i]);
+// 	}
+// 	return imena
+// }
+
+// function obrisiImena(str){
+// 	const array = str.replace(/ /g, '').split(',')
+// 	for (i in array){
+// 		imena.splice(imena.indexOf(array[i]), 1)
+// 	}
+// 	return imena
+// }
+
+
+// function promeniPol(){
+//     var toggler = document.getElementById('toggler')
+//     if (toggler.value === 'bata'){
+//         toggler.value = 'seka'
+//         document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
+//         document.getElementById('seka').style.color = 'purple'
+//         document.getElementById('polImena').innerText = 'Ženska imena'
+//         document.getElementById('unosImena').placeholder = 'Na primer: "Matilda, Stanojka,Volica" ...'
+//         rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
+//     } else {
+//         toggler.value = 'bata'
+//         document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
+//         document.getElementById('bata').style.color = 'purple'
+//         document.getElementById('polImena').innerText = 'Muška imena'
+//         document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' 
+//         rnd_ime =  imena[Math.floor(Math.random() * imena.length)]
+//     }
+// }
+
+
+// function ispisiDodataImena(nizImena){
+// 	const list = document.getElementById('dodataImena')
+// 	removeAllChildNodes(list)
+
+// 	for (var i = 0; i < nizImena.length; i++){
+// 		var li = document.createElement('li')
+// 		li.innerText = nizImena[i]
+// 		li.classList.add('imeNaListi')
+// 		list.appendChild(li)
+// 	}
+// 	return nizImena
+// }
+
+// function procitajKolacic(jezik, pol, tip){
+// 	var cookie = document.cookie
+// 	var rezultat = {
+// 		'ceoKolacic': '',
+// 		'staSeTrazi': ''
+// 	}
+// 	if (tip) {
+// 		if (cookie.includes(`${jezik}_${pol}_${tip}`)) {rezultat.ceoKolacic = cookie, rezultat.staSeTrazi = `${jezik}_${pol}_${tip}`;}
+// 	} else {
+// 		if (cookie.includes(`${jezik}_${pol}`) && jezik !== 'srpski') {rezultat.ceoKolacic = cookie, rezultat.staSeTrazi = `${jezik}_${pol}`} else {console.error('Ovaj jezik MORA da sadrži tip!')}
+// 	} return rezultat;
+// }
+
+// function napraviKolacic(jezikImena, pol, imena, tipPisma){
+// 	if (tipPisma) {
+// 		document.cookie = `${jezikImena}_${pol}_${tipPisma}=${imena.replace(/ /g, '')}; expires=Mon, 30 Dec 2030 12:00:00 UTC; path=/; sameSite=Strict`;
+// 	} else {
+// 		document.cookie = `${jezikImena}_${pol}=${imena.replace(/ /g, '')}; expires=Mon, 30 Dec 2030 12:00:00 UTC; path=/; sameSite=Strict`;
+// 	}
+// }
+
+// function dodajKolacic(jezik, pol, imena, tipPisma){
+// 	if (imena === '' && proveraPraznine !== ''){
+// 		console.log('Nije uneto ime. Promena nije izvrsena.')
+// 		return
+// 	}
+// 	const ocitaniKolacici = procitajKolacic(jezik, pol, tipPisma)
+// 	var ceoKolacic = ocitaniKolacici.ceoKolacic
+// 	var trazeniKolacic = ocitaniKolacici.staSeTrazi
+// 	var unetaImena = new Set(imena.replace(/ /g, '').split(','))
+// 	if (trazeniKolacic === ''){
+// 		unetaImena = Array.from(unetaImena).join()
+// 		return napraviKolacic(jezik, pol, unetaImena, tipPisma)
+// 	}
+// 	var pocetnaImena = (function(){
+// 		const nizKolacica = ceoKolacic.replace(/ /g, '').split(';')
+// 		for (let i = 0; i < nizKolacica.length; i++){
+// 			if (nizKolacica[i].includes(trazeniKolacic)){
+// 				const stringImena = nizKolacica[i].split('=')[1]
+// 				return new Set(stringImena.split(','))
+// 			}
+// 		}
+// 	}())
+// 	var imenaZaDodavanje = Array.from(new Set([...pocetnaImena, ...unetaImena])).join()
+// 	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
+// }
+
+// function ukloniKolacic(jezik, pol, imena, tipPisma){
+// 	const ocitaniKolacici = procitajKolacic(jezik, pol, tipPisma)
+// 	var ceoKolacic = ocitaniKolacici.ceoKolacic
+// 	var trazeniKolacic = ocitaniKolacici.staSeTrazi
+// 	var unetaImena = Array.from(new Set(imena.replace(/ /g, '').split(',')))
+// 	var pocetnaImena = (function(){
+// 		const nizKolacica = ceoKolacic.replace(/ /g, '').split(';')
+// 		for (let i = 0; i < nizKolacica.length; i++){
+// 			if (nizKolacica[i].includes(trazeniKolacic)){
+// 				const stringImena = nizKolacica[i].split('=')[1]
+// 				return Array.from(new Set(stringImena.split(',')))
+// 			}
+// 		}
+// 	}())
+// 	var imenaZaDodavanje = pocetnaImena.filter(function(item){return !unetaImena.includes(item)}).join()
+// 	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
+// }
+	
+
+// var dugmici = document.getElementsByClassName('zastava')
+// for (i = 0; i < dugmici.length; i++){
+// 	dugmici[i].addEventListener('click', promenaJezika)
+// }
+
+
+// function promenaJezika(){
+// 	const kolacic = document.cookie
+// 	if (!kolacic.includes('jezik=')){
+// 		document.cookie = 'jezik=srpskilatinica; path=/; sameSite=Strict;'
+// 	} else {
+// 		var jezik = this.dataset.jezik
+// 		var tip = this.dataset.tip || ''
+// 		document.cookie = `jezik=${jezik + tip}; path=/; sameSite=Strict;`	
+// 	}
+// }
+
+
+
+function dodajImena(string, pol, jezik, tip){
+	var jt = (function(){
+		if (tip) {
+			return jezik + '_' + tip
+		} return jezik
+	}())
+	var levaStrana = pol + '_' + jt
+	if (string === ''){
+		return
 	}
-	return imena
+	var imena = Array.from(new Set(string.replace(/ /g, '').split(',')))
+	localStorage.setItem(levaStrana, JSON.stringify(imena))
 }
 
-function obrisiImena(str){
-	const array = str.replace(/ /g, '').split(',')
-	for (i in array){
-		imena.splice(imena.indexOf(array[i]), 1)
+function ukloniIme(string, pol, jezik, tip){
+	var jt = (function(){
+		if (tip) {
+			return jezik + '_' + tip
+		} return jezik
+	}())
+	var levaStrana = pol + '_' + jt
+	if (string === ''){
+		localStorage.removeItem(levaStrana)
+		return
 	}
-	return imena
+	var imena = JSON.parse(localStorage.getItem(levaStrana))
+	imena.splice(imena.indexOf(string), 1)
+	if (imena.length > 0){
+		localStorage.setItem(levaStrana, JSON.stringify(imena))
+	} else {
+		localStorage.removeItem(levaStrana)
+	}
 }
 
 
-function promeniPol(){
-    var toggler = document.getElementById('toggler')
-    if (toggler.value === 'bata'){
-        toggler.value = 'seka'
-        document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
-        document.getElementById('seka').style.color = 'purple'
-        document.getElementById('polImena').innerText = 'Ženska imena'
-        document.getElementById('unosImena').placeholder = 'Na primer: "Matilda, Stanojka,Volica" ...'
-        rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
-        pol = 'seka'
-    } else {
-        toggler.value = 'bata'
-        document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
-        document.getElementById('bata').style.color = 'purple'
-        document.getElementById('polImena').innerText = 'Muška imena'
-        document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' 
-        rnd_ime =  imena[Math.floor(Math.random() * imena.length)]
-        pol = 'bata'
-    }
+function izlistajImena(pol, jezik, tip){
+	var jt = (function(){
+		if (tip) {
+			return jezik + '_' + tip
+		} return jezik
+	}())
+	const staTraziti = pol + '_' + jt
+	return JSON.parse(localStorage.getItem(staTraziti)) || ''
+}
+
+
+function prikaziUnetaImena(){
+	var kolacic = document.cookie.replace(/ /g, '').split(';')
+	var imena = izlistajImena(trenutniPol, trenutniJezik, trenutniTip)
+	const list = document.getElementById('dodataImena')
+	removeAllChildNodes(list)
+
+	for (var i = 0; i < imena.length; i++){
+		var li = document.createElement('li')
+		li.innerText = imena[i]
+		li.classList.add('imeNaListi')
+		list.appendChild(li)
+	}
 }
 
 function removeAllChildNodes(parent) {
@@ -241,128 +420,58 @@ function removeAllChildNodes(parent) {
     }
 }
 
-function ispisiDodataImena(nizImena){
-	const list = document.getElementById('dodataImena')
-	removeAllChildNodes(list)
-
-	for (var i = 0; i < nizImena.length; i++){
-		var li = document.createElement('li')
-		li.innerText = nizImena[i]
-		li.classList.add('imeNaListi')
-		list.appendChild(li)
-	}
-	return nizImena
-}
-
-function procitajKolacic(jezik, pol, tip){
-	var cookie = document.cookie
-	var rezultat = {
-		'ceoKolacic': '',
-		'staSeTrazi': ''
-	}
-	if (tip) {
-		if (cookie.includes(`${jezik}_${pol}_${tip}`)) {rezultat.ceoKolacic = cookie, rezultat.staSeTrazi = `${jezik}_${pol}_${tip}`;}
-	} else {
-		if (cookie.includes(`${jezik}_${pol}`) && jezik !== 'srpski') {rezultat.ceoKolacic = cookie, rezultat.staSeTrazi = `${jezik}_${pol}`} else {console.error('Ovaj jezik MORA da sadrži tip!')}
-	} return rezultat;
-}
-
-function napraviKolacic(jezikImena, pol, imena, tipPisma){
-	if (tipPisma) {
-		document.cookie = `${jezikImena}_${pol}_${tipPisma}=${imena.replace(/ /g, '')}; expires=Mon, 30 Dec 2030 12:00:00 UTC; path=/; sameSite=Strict`;
-	} else {
-		document.cookie = `${jezikImena}_${pol}=${imena.replace(/ /g, '')}; expires=Mon, 30 Dec 2030 12:00:00 UTC; path=/; sameSite=Strict`;
-	}
-}
-
-function dodajKolacic(jezik, pol, imena, tipPisma){
-	if (imena === '' && proveraPraznine !== ''){
-		console.log('Nije uneto ime. Promena nije izvrsena.')
+function napraviKolacic(element, izmena){
+	const standardniDeo = 'path=/; sameSite=Strict'
+	if (document.cookie === ''){
+		document.cookie = 'pol=bata; ' + standardniDeo
+		document.cookie = 'jezik=srpski; ' + standardniDeo
+		document.cookie = 'tipJezika=latinica; ' + standardniDeo
 		return
 	}
-	const ocitaniKolacici = procitajKolacic(jezik, pol, tipPisma)
-	var ceoKolacic = ocitaniKolacici.ceoKolacic
-	var trazeniKolacic = ocitaniKolacici.staSeTrazi
-	var unetaImena = new Set(imena.replace(/ /g, '').split(','))
-	if (trazeniKolacic === ''){
-		unetaImena = Array.from(unetaImena).join()
-		return napraviKolacic(jezik, pol, unetaImena, tipPisma)
-	}
-	var pocetnaImena = (function(){
-		const nizKolacica = ceoKolacic.replace(/ /g, '').split(';')
-		for (let i = 0; i < nizKolacica.length; i++){
-			if (nizKolacica[i].includes(trazeniKolacic)){
-				const stringImena = nizKolacica[i].split('=')[1]
-				return new Set(stringImena.split(','))
-			}
-		}
-	}())
-	var imenaZaDodavanje = Array.from(new Set([...pocetnaImena, ...unetaImena])).join()
-	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
-}
-
-function ukloniKolacic(jezik, pol, imena, tipPisma){
-	const ocitaniKolacici = procitajKolacic(jezik, pol, tipPisma)
-	var ceoKolacic = ocitaniKolacici.ceoKolacic
-	var trazeniKolacic = ocitaniKolacici.staSeTrazi
-	var unetaImena = Array.from(new Set(imena.replace(/ /g, '').split(',')))
-	var pocetnaImena = (function(){
-		const nizKolacica = ceoKolacic.replace(/ /g, '').split(';')
-		for (let i = 0; i < nizKolacica.length; i++){
-			if (nizKolacica[i].includes(trazeniKolacic)){
-				const stringImena = nizKolacica[i].split('=')[1]
-				return Array.from(new Set(stringImena.split(',')))
-			}
-		}
-	}())
-	var imenaZaDodavanje = pocetnaImena.filter(function(item){return !unetaImena.includes(item)}).join()
-	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
-}
-	
-
-var dugmici = document.getElementsByClassName('zastava')
-for (i = 0; i < dugmici.length; i++){
-	dugmici[i].addEventListener('click', promenaJezika)
-}
-
-
-function promenaJezika(){
-	const kolacic = document.cookie
-	if (!kolacic.includes('jezik=')){
-		document.cookie = 'jezik=srpskilatinica; path=/; sameSite=Strict;'
-	} else {
-		var jezik = this.dataset.jezik
-		var tip = this.dataset.tip || ''
-		document.cookie = `jezik=${jezik + tip}; path=/; sameSite=Strict;`	
+	if (element){
+		document.cookie = `${element}=${izmena}; ` + standardniDeo
 	}
 }
 
 
+function promenaJezika(element, promena){
+	napraviKolacic('jezik', this.dataset.jezik);
+	napraviKolacic('tipJezika', this.dataset.tip || 'No');
+	trenutniJezik = this.dataset.jezik
+	trenutniTip = this.dataset.tip
+}
+
+function promenaPola(){{
+    var toggler = document.getElementById('toggler')
+    if (toggler.value === 'bata'){
+        toggler.value = 'seka'
+        document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
+        document.getElementById('seka').style.color = 'purple'
+        document.getElementById('polImena').innerText = 'Ženska imena'
+        document.getElementById('unosImena').placeholder = 'Na primer: "Matilda, Stanojka,Volica" ...'
+        // rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
+        trenutniPol = 'seka'
+        napraviKolacic('pol', 'seka')
+    } else {
+        toggler.value = 'bata'
+        document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
+        document.getElementById('bata').style.color = 'purple'
+        document.getElementById('polImena').innerText = 'Muška imena'
+        document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' 
+        // rnd_ime =  imena[Math.floor(Math.random() * imena.length)]
+        trenutniPol = 'bata'
+        napraviKolacic('pol', 'bata')
+    }
+}
+}
 
 
-dodajKolacic('srpski', 'bata', 'Zvonko,Dragivoje', 'latinica')
-dodajKolacic('srpski', 'bata', 'Звонко,Драгивоје', 'cirilica')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+dodajImena('zoran, bradilko', 'bata', 'srpski', 'latinica');
+dodajImena('zorica, kaka, mama, tata', 'seka', 'srpski', 'latinica');
+dodajImena('милорад, мика, жика', 'bata', 'srpski', 'cirilica');
+dodajImena('сенка, марина', 'seka', 'srpski', 'cirilica');
+dodajImena('simon, says', 'bata', 'engleski', '');
+dodajImena('monica, belucci', 'seka', 'engleski', '');
 
 
 
