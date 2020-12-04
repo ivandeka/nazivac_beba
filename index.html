@@ -17,19 +17,19 @@
 
 </head>
 
-<body onload="napraviKolacic();animirajBebu()">
+<body onload="napraviKolacic();startnePozicije();animirajBebu()">
 
     <div id="dugmeZaModal" onclick="otvoriModal();">IMENA</div>
 
     <div id="jezici">
-        <div class="omotacZaJezik">
-            <button class="zastava" data-jezik="srpski" data-tip="latinica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></button><span class="tipJezika">Latinica</span>
+        <div class="omotacZaJezik odabraniJezik">
+            <div class="zastava" data-jezik="srpski" data-tip="latinica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></div><span class="tipJezika">Latinica</span>
         </div>
         <div class="omotacZaJezik">
-            <button class="zastava" data-jezik="srpski" data-tip="cirilica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></button><span class="tipJezika">Ћирилица</span>
+            <div class="zastava" data-jezik="srpski" data-tip="cirilica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></div><span class="tipJezika">Ћирилица</span>
         </div>
         <div class="omotacZaJezik">
-            <button class="zastava" data-jezik="engleski"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206626.svg"></button>
+            <div class="zastava" data-jezik="engleski" data-tip="nema"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206626.svg"></div>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
         <h3 id="polImena">Muška imena</h3>
         <div id="gornjaLinija">
             <input id="unosImena" title="Kako biste dodali imena, unesite ih razdvojena zarezom." placeholder='Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' >
-            <button id="slanjeImena" onclick="dodavanjeImenaNaSpisak()">Dodaj imena</button>
+            <button id="slanjeImena" onclick="dodajImena();" type="submit">Dodaj imena</button>
             <p class="objasnjenje">Za dodavanje imena, razdvojite ih zarezom i kliknite na dugme "Dodaj imena"</p>
         </div>
         <div id="omotacKolona">
@@ -57,7 +57,7 @@
     <div id="wrapper">
         <span class="zaToggler" id="bata">bata</span>
         <label class="switch">
-        <input type="checkbox" value="bata" id="toggler" onclick="promenaPola()">
+        <input type="checkbox" id="toggler" onclick="promenaPola()">
         <span class="slider round"></span>
         </label>
         <span class="zaToggler" id="seka">seka</span>
