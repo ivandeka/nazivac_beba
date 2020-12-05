@@ -14,14 +14,8 @@ var jezikDiv = document.getElementsByClassName('omotacZaJezik')
 for (i = 0; i < jezikDiv.length; i++){
 	jezikDiv[i].addEventListener('click', promenaJezika)
 }
-// var trenutniJezik = 'srpski'
-// var trenutniTip = 'latinica'
-// var trenutniPol = 'bata'
-
-
 
 document.getElementById('iksic').addEventListener('click', zatvoriModal);
-// document.getElementById('create').addEventListener('click', iskljuciToggler);
 
 startDugme.addEventListener('click', function(){
 	var pjt = vratiPolJezikTip()
@@ -41,15 +35,6 @@ startDugme.addEventListener('click', function(){
     }
 });
 document.getElementById('modalWrap').addEventListener('click', zatvoriModal);
-
-// var togglerVrednost = document.getElementById("toggler").value
-// if (pol === 'bata'){
-//     document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
-//     // var rnd_ime = imena[Math.floor(Math.random() * imena.length)]
-// } else {
-//     document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
-//     // var rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
-// }
 
 var counter = document.getElementById('cnt');
 var t = document.getElementById("timer");
@@ -99,9 +84,6 @@ function vratiPolJezikTip(){
 }
 
 function otkucajIme(trajanjePoSlovu, ime){
-
-	// rnd_ime = Math.floor(Math.random() * listaImena.length)
-
 	var j = 1
 	const t = trajanjePoSlovu * 1000
 	for (let i = 0; i < ime.length; i++){
@@ -171,7 +153,7 @@ function animacija(div){
 	elemenat.style.bottom = `${-randomVisina}px`
 	elemenat.style.height = `${randomVisina}px`
     var randomHorizontala = Math.floor(Math.random() * window.innerWidth)
-    elemenat.style.left = `${randomHorizontala}px` /* isto donji desni ugao */
+    elemenat.style.left = `${randomHorizontala}px`
 
 	setInterval(function(){
 		var brzina = brzine[Math.floor(Math.random() * brzine.length)]
@@ -236,155 +218,6 @@ function iskljuciToggler(){
     slajder.style.cursor="not-allowed"
 }
 
-// function prikaziImena(){
-// 	return imena
-// }
-
-// function dodajImena(str){
-// 	const array = str.replace(/ /g, '').split(',')
-// 	for (i in array){
-// 		imena.push(array[i]);
-// 	}
-// 	return imena
-// }
-
-// function obrisiImena(str){
-// 	const array = str.replace(/ /g, '').split(',')
-// 	for (i in array){
-// 		imena.splice(imena.indexOf(array[i]), 1)
-// 	}
-// 	return imena
-// }
-
-
-// function promeniPol(){
-//     var toggler = document.getElementById('toggler')
-//     if (toggler.value === 'bata'){
-//         toggler.value = 'seka'
-//         document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
-//         document.getElementById('seka').style.color = 'purple'
-//         document.getElementById('polImena').innerText = 'Ženska imena'
-//         document.getElementById('unosImena').placeholder = 'Na primer: "Matilda, Stanojka,Volica" ...'
-//         rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
-//     } else {
-//         toggler.value = 'bata'
-//         document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
-//         document.getElementById('bata').style.color = 'purple'
-//         document.getElementById('polImena').innerText = 'Muška imena'
-//         document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' 
-//         rnd_ime =  imena[Math.floor(Math.random() * imena.length)]
-//     }
-// }
-
-
-// function ispisiDodataImena(nizImena){
-// 	const list = document.getElementById('dodataImena')
-// 	removeAllChildNodes(list)
-
-// 	for (var i = 0; i < nizImena.length; i++){
-// 		var li = document.createElement('li')
-// 		li.innerText = nizImena[i]
-// 		li.classList.add('imeNaListi')
-// 		list.appendChild(li)
-// 	}
-// 	return nizImena
-// }
-
-// function procitajKolacic(jezik, pol, tip){
-// 	var cookie = document.cookie
-// 	var rezultat = {
-// 		'ceoKolacic': '',
-// 		'staSeTrazi': ''
-// 	}
-// 	if (tip) {
-// 		if (cookie.includes(`${jezik}_${pol}_${tip}`)) {rezultat.ceoKolacic = cookie, rezultat.staSeTrazi = `${jezik}_${pol}_${tip}`;}
-// 	} else {
-// 		if (cookie.includes(`${jezik}_${pol}`) && jezik !== 'srpski') {rezultat.ceoKolacic = cookie, rezultat.staSeTrazi = `${jezik}_${pol}`} else {console.error('Ovaj jezik MORA da sadrži tip!')}
-// 	} return rezultat;
-// }
-
-// function napraviKolacic(jezikImena, pol, imena, tipPisma){
-// 	if (tipPisma) {
-// 		document.cookie = `${jezikImena}_${pol}_${tipPisma}=${imena.replace(/ /g, '')}; expires=Mon, 30 Dec 2030 12:00:00 UTC; path=/; sameSite=Strict`;
-// 	} else {
-// 		document.cookie = `${jezikImena}_${pol}=${imena.replace(/ /g, '')}; expires=Mon, 30 Dec 2030 12:00:00 UTC; path=/; sameSite=Strict`;
-// 	}
-// }
-
-// function dodajKolacic(jezik, pol, imena, tipPisma){
-// 	if (imena === '' && proveraPraznine !== ''){
-// 		console.log('Nije uneto ime. Promena nije izvrsena.')
-// 		return
-// 	}
-// 	const ocitaniKolacici = procitajKolacic(jezik, pol, tipPisma)
-// 	var ceoKolacic = ocitaniKolacici.ceoKolacic
-// 	var trazeniKolacic = ocitaniKolacici.staSeTrazi
-// 	var unetaImena = new Set(imena.replace(/ /g, '').split(','))
-// 	if (trazeniKolacic === ''){
-// 		unetaImena = Array.from(unetaImena).join()
-// 		return napraviKolacic(jezik, pol, unetaImena, tipPisma)
-// 	}
-// 	var pocetnaImena = (function(){
-// 		const nizKolacica = ceoKolacic.replace(/ /g, '').split(';')
-// 		for (let i = 0; i < nizKolacica.length; i++){
-// 			if (nizKolacica[i].includes(trazeniKolacic)){
-// 				const stringImena = nizKolacica[i].split('=')[1]
-// 				return new Set(stringImena.split(','))
-// 			}
-// 		}
-// 	}())
-// 	var imenaZaDodavanje = Array.from(new Set([...pocetnaImena, ...unetaImena])).join()
-// 	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
-// }
-
-// function ukloniKolacic(jezik, pol, imena, tipPisma){
-// 	const ocitaniKolacici = procitajKolacic(jezik, pol, tipPisma)
-// 	var ceoKolacic = ocitaniKolacici.ceoKolacic
-// 	var trazeniKolacic = ocitaniKolacici.staSeTrazi
-// 	var unetaImena = Array.from(new Set(imena.replace(/ /g, '').split(',')))
-// 	var pocetnaImena = (function(){
-// 		const nizKolacica = ceoKolacic.replace(/ /g, '').split(';')
-// 		for (let i = 0; i < nizKolacica.length; i++){
-// 			if (nizKolacica[i].includes(trazeniKolacic)){
-// 				const stringImena = nizKolacica[i].split('=')[1]
-// 				return Array.from(new Set(stringImena.split(',')))
-// 			}
-// 		}
-// 	}())
-// 	var imenaZaDodavanje = pocetnaImena.filter(function(item){return !unetaImena.includes(item)}).join()
-// 	return napraviKolacic(jezik, pol, imenaZaDodavanje, tipPisma)
-// }
-	
-
-// var dugmici = document.getElementsByClassName('zastava')
-// for (i = 0; i < dugmici.length; i++){
-// 	dugmici[i].addEventListener('click', promenaJezika)
-// }
-
-
-// function promenaJezika(){
-// 	const kolacic = document.cookie
-// 	if (!kolacic.includes('jezik=')){
-// 		document.cookie = 'jezik=srpskilatinica; path=/; sameSite=Strict;'
-// 	} else {
-// 		var jezik = this.dataset.jezik
-// 		var tip = this.dataset.tip || ''
-// 		document.cookie = `jezik=${jezik + tip}; path=/; sameSite=Strict;`	
-// 	}
-// }
-
-
-
-// function dodajImena(){
-// 	var polJezikTip = vratiPolJezikTip()
-// 	var input = document.getElementById('unosImena')
-// 	var string = input.value
-// 	var imena = Array.from(new Set(string.replace(/ /g, '').split(',')))
-// 	localStorage.setItem(polJezikTip, JSON.stringify(imena))
-// 	input.value = ""
-// 	otvoriModal();
-// }
-
 function vratiKolacicObjekat(){
 	var trenutniKolacic = document.cookie
 	var niz = trenutniKolacic.replace(/ /g, '').split(';')
@@ -401,25 +234,24 @@ function vratiKolacicObjekat(){
 function dodajImena(){
 	var polJezikTip = vratiPolJezikTip()
 	var input = document.getElementById('unosImena')
-	var string = input.value
+	var string = input.value.replace(/ /g, '')
+	console.log(string)
 
 	try {
-		var prethodnaImena = JSON.parse(localStorage.getItem(polJezikTip).split(','))
+		var prethodnaImena = new Set(JSON.parse(localStorage.getItem(polJezikTip).replace(/ /g, '').split(',')))
 	} catch(error) {
-		var prethodnaImena = []
+		var prethodnaImena = new Set()
 	}
-	var unetaImena = Array.from(new Set(string.replace(/ /g, '').split(',')))
-	var imena = prethodnaImena.concat(unetaImena)
+	var unetaImena = new Set(string.split(','))
+	var imena = Array.from(new Set([...prethodnaImena, ...unetaImena]))
 	localStorage.setItem(polJezikTip, JSON.stringify(imena))
 	input.value = ""
 	prikaziUnetaImena();
 }
 
 
-
 function klikniDaObrisesIme(){
 	var sviIksevi = document.getElementsByClassName('brisanje')
-	console.log(sviIksevi.length)
 	for (var i = 0; i < sviIksevi.length; i++){
 		var string = sviIksevi[i].parentElement.firstChild.data
 		sviIksevi[i].addEventListener('click', ukloniImenjesce)
@@ -429,6 +261,11 @@ function klikniDaObrisesIme(){
 function ukloniImenjesce(element){
 	ukloniIme(this.parentElement.firstChild.data);
 	obrisiElement(this.parentElement);
+}
+
+function obrisiSvaImena(){
+	ukloniIme('');
+	otvoriModal();
 }
 
 function ukloniIme(string){
@@ -507,8 +344,6 @@ function pozadinaZastavica(element){
 function promenaJezika(element, promena){
 	napraviKolacic('jezik', this.firstElementChild.dataset.jezik);
 	napraviKolacic('tipJezika', this.firstElementChild.dataset.tip);
-	// trenutniJezik = this.firstElementChild.dataset.jezik
-	// trenutniTip = this.firstElementChild.dataset.tip
 	pozadinaZastavica(this);
 }
 
@@ -516,8 +351,7 @@ function startnePozicije(){
 	var kolacic = vratiKolacicObjekat()
 	var bata = document.getElementById('bata')
 	var seka = document.getElementById('seka')
-	console.log(bata)
-	if (kolacic.pol === 'bata'){  /* startna pozicija za toggler */
+	if (kolacic.pol === 'bata'){
 		bata.style.color = 'purple'
 		seka.style.color = 'rgba(0,0,0,.1)'
 	} else {
@@ -536,23 +370,21 @@ function startnePozicije(){
 
 function promenaPola(){{
     var trenutniKolacic = vratiKolacicObjekat()
+    const bata = document.getElementById('bata')
+    const seka = document.getElementById('seka')
     if (trenutniKolacic.pol === 'bata'){
         toggler.value = 'seka'
-        document.getElementById('bata').style.color = 'rgba(0,0,0,.1)'
-        document.getElementById('seka').style.color = 'purple'
+        bata.style.color = 'rgba(0,0,0,.1)'
+        seka.style.color = 'purple'
         document.getElementById('polImena').innerText = 'Ženska imena'
         document.getElementById('unosImena').placeholder = 'Na primer: "Matilda, Stanojka,Volica" ...'
-        // rnd_ime =  imenaZenska[Math.floor(Math.random() * imenaZenska.length)]
-        // trenutniPol = 'seka'
         napraviKolacic('pol', 'seka')
     } else {
         toggler.value = 'bata'
-        document.getElementById('seka').style.color = 'rgba(0,0,0,.1)'
-        document.getElementById('bata').style.color = 'purple'
+        seka.style.color = 'rgba(0,0,0,.1)'
+        bata.style.color = 'purple'
         document.getElementById('polImena').innerText = 'Muška imena'
-        document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' 
-        // rnd_ime =  imena[Math.floor(Math.random() * imena.length)]
-        // trenutniPol = 'bata'
+        document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...'
         napraviKolacic('pol', 'bata')
     }
 }
@@ -566,9 +398,13 @@ function promenaPola(){{
 // dodajImena('simon, says', 'bata', 'engleski', '');
 // dodajImena('monica, belucci', 'seka', 'engleski', '');
 
+// var preth = 'som, somonja, simonja'.replace(/ /g, '').split(',')
+// var nar = 'somonja, sonja, slavica'.replace(/ /g, '').split(',')
 
+// var novo = new Set([...new Set(preth), ...new Set(nar)])
+// console.log(novo)
 
-
+// console.log('     '.replace(/ /g, ''))
 
 
 
