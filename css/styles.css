@@ -310,6 +310,7 @@ input:checked + .slider:before {
     border-radius: 5px;
     display: block;
     transition: ease all .2s;
+    width: 17%;
 }
 
 #slanjeImena:hover {
@@ -353,10 +354,7 @@ input:checked + .slider:before {
 #levaKolonaNaslov {
     color: purple;
     font-size: 14px;
-    margin-top: 10px;
-    padding: 0;
     text-align: center;
-    overflow-y: scroll;
 }
 
 #desnaKolona {
@@ -387,6 +385,7 @@ input:checked + .slider:before {
     border-radius: 5px;
     border: 2px solid red;
     transition: ease all .2s;
+    width: 95%;
 }
 
 #obrisiSve:hover {
@@ -492,7 +491,52 @@ img {
 }
 
 
+#pocetnaSlova {
+    width: 65%;
+    height: 3rem;
+    margin: 15px auto 40px auto;
+    text-align: center;
+}
 
+.pocetnoSlovo {
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    border: 2px solid purple;
+    border-radius: 5px;
+    margin: 2px;
+    background-color: white;
+    transition: ease all .2s;
+    color: purple;
+}
+
+.pocetnoSlovo:hover, .pocetnoSlovo:enabled:hover, #odabrano {
+    transition: ease all .2s;
+    background-color: purple;
+    color: white;
+}
+
+.ime {
+    width: 180px;
+    float: left;
+    height: 1.5rem;
+    color: rgba(0,0,0,.2);
+    transition: ease all .2s;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.odabranoIme, .ime:hover {
+    /*text-decoration: line-through;*/
+    color: green;
+    transition: ease all .2s
+}
+
+#predlozenaImena {
+    height: 75%;
+    overflow-y: scroll;
+}
 
 
 

@@ -194,6 +194,8 @@ function otvoriModal(){
     const modal = document.getElementById('modal')
     const modalOmotac = document.getElementById('modalWrap')
     prikaziUnetaImena();
+	// imenaNaGomili();
+	izaberiSlovo();
     for (let i = 1; i <= 100; i++){
         setTimeout(function(){
             modalOmotac.style.display="block";
@@ -235,8 +237,6 @@ function dodajImena(){
 	var polJezikTip = vratiPolJezikTip()
 	var input = document.getElementById('unosImena')
 	var string = input.value.replace(/ /g, '')
-	console.log(string)
-
 	try {
 		var prethodnaImena = new Set(JSON.parse(localStorage.getItem(polJezikTip).replace(/ /g, '').split(',')))
 	} catch(error) {
@@ -368,7 +368,7 @@ function startnePozicije(){
 	}
 }
 
-function promenaPola(){{
+function promenaPola(){
     var trenutniKolacic = vratiKolacicObjekat()
     const bata = document.getElementById('bata')
     const seka = document.getElementById('seka')
@@ -388,29 +388,125 @@ function promenaPola(){{
         napraviKolacic('pol', 'bata')
     }
 }
+
+function vratiPJTImena(){
+	var polJezikTip = vratiKolacicObjekat()
+	var j = polJezikTip.jezik
+	var p = polJezikTip.pol
+	var t = polJezikTip.tipJezika
+	let spisak = []
+
+	try {
+		return svaImena[j][t][p]
+	} catch(e) {
+		try {
+			return svaImena[j][p]
+		} catch(error){
+			return ''
+		}
+	}
+}
+
+function pocetnaSlova(){
+	var imenaZaPJT = vratiPJTImena()
+	const lista = document.getElementById('predlozenaImena')
+	var divPocetna = document.getElementById('pocetnaSlova')
+	removeAllChildNodes(divPocetna)
+	const pocetnaSlova = new Set()
+	for (var i = 0; i < imenaZaPJT.length; i++){
+		pocetnaSlova.add(imenaZaPJT[i][0])
+	}
+	Array.from(pocetnaSlova).forEach(function(item, index){
+		var btn = document.createElement('button')
+		btn.classList.add('pocetnoSlovo')
+		btn.append(item)
+		divPocetna.appendChild(btn)
+		if (index === 0){
+			btn.id = 'odabrano'
+		}
+	})
+	imenaNaGomili();
 }
 
 
-// dodajImena('zoran, bradilko', 'bata', 'srpski', 'latinica');
-// dodajImena('zorica, kaka, mama, tata', 'seka', 'srpski', 'latinica');
-// dodajImena('милорад, мика, жика', 'bata', 'srpski', 'cirilica');
-// dodajImena('сенка, марина', 'seka', 'srpski', 'cirilica');
-// dodajImena('simon, says', 'bata', 'engleski', '');
-// dodajImena('monica, belucci', 'seka', 'engleski', '');
 
-// var preth = 'som, somonja, simonja'.replace(/ /g, '').split(',')
-// var nar = 'somonja, sonja, slavica'.replace(/ /g, '').split(',')
-
-// var novo = new Set([...new Set(preth), ...new Set(nar)])
-// console.log(novo)
-
-// console.log('     '.replace(/ /g, ''))
-
-
+function izaberiSlovo(){
+	pocetnaSlova();
+	var pSlova = document.getElementsByClassName('pocetnoSlovo');
+	for (var i = 0; i < pSlova.length; i++){
+		pSlova[i].addEventListener('click', function(){
+			for (var i = 0; i < pSlova.length; i++){
+				pSlova[i].removeAttribute('id')
+			}
+			this.id = 'odabrano'
+			imenaNaGomili();
+		})
+	}
+}
 
 
+function imenaNaGomili(){
+	var imenaZaPJT = vratiPJTImena()
+	try{
+		var s = document.getElementById('odabrano').textContent
+	} catch(error){
+		pocetnaSlova();
+	}
+	var lista = document.getElementById('predlozenaImena')
+	removeAllChildNodes(lista)
+	for (var i = 0; i < imenaZaPJT.length; i++){
+		if (imenaZaPJT[i].startsWith(s)) {
+			li = document.createElement('li')
+			li.classList.add('ime')
+			// cb = document.createElement('input')
+			// cb.style.float = 'left'
+			// cb.type = 'checkbox'
+			li.innerText = imenaZaPJT[i]
+			// if (li.innerText)
+			// li.appendChild(cb)
+			lista.appendChild(li)
+		}
+	}
+	ocistiInput();
+	operacijeSaCekboksevima();
+}
 
+function ocistiInput(){
+	document.getElementById('unosImena').value = ''
+}
 
+function operacijeSaCekboksevima(){
+	var input = document.getElementsByTagName('input')
+	var imena = document.getElementsByClassName('ime')
+	for (var i = 0; i < imena.length; i++){
+		imena[i].addEventListener('click', dodajImeNaSpisak)
+	}
+}
+
+function dodajImeNaSpisak(){
+	var inputPolje = document.getElementById('unosImena')
+	if (this.classList.value.includes('odabranoIme')){
+		this.classList.remove('odabranoIme')
+		inputPolje.value = inputPolje.value.replace(this.innerText, '').replace(',,', ',')
+		if (inputPolje.value.endsWith(',')){
+			inputPolje.value = inputPolje.value.slice(0, inputPolje.value.length - 1)
+		} else if (inputPolje.value.startsWith(',')){
+			inputPolje.value = inputPolje.value.slice(1, inputPolje.value.length)
+		}
+	} else {
+		this.classList.add('odabranoIme')
+		if (inputPolje.value === '' || inputPolje.value.replace(/ /g, '').endsWith(',')){
+			inputPolje.value += this.innerText
+		} else {
+			inputPolje.value += ',' + this.innerText
+		}
+	}
+}
+
+function oduzmiImeSaSpiska(){
+	var inputPolje = document.getElementById('unosImena')
+	console.log(this.parentElement.innerText)
+}
 
 
 
