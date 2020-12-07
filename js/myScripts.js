@@ -246,6 +246,13 @@ function vratiKolacicObjekat(){
 	return kolacicObj
 }
 
+var dugmeZaDodavanjeImena = document.getElementById('unosImena')
+dugmeZaDodavanjeImena.addEventListener('keypress', function(event){
+	if (event.keyCode === 13){
+		dodajImena();
+	}
+})
+
 function dodajImena(){
 	var polJezikTip = vratiPolJezikTip()
 	var input = document.getElementById('unosImena')
@@ -397,15 +404,11 @@ function promenaPola(){
         toggler.value = 'seka'
         bata.style.color = 'rgba(0,0,0,.1)'
         seka.style.color = 'purple'
-        document.getElementById('polImena').innerText = 'Ženska imena'
-        document.getElementById('unosImena').placeholder = 'Na primer: "Matilda, Stanojka,Volica" ...'
         napraviKolacic('pol', 'seka')
     } else {
         toggler.value = 'bata'
         seka.style.color = 'rgba(0,0,0,.1)'
         bata.style.color = 'purple'
-        document.getElementById('polImena').innerText = 'Muška imena'
-        document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...'
         napraviKolacic('pol', 'bata')
     }
     window.location.reload();
