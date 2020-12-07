@@ -1,7 +1,7 @@
 const jezici = {
 	"srpski": {
 		"latinica": {
-			"azbuka": "a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,nj,o,p,r,s,š,t,u,v,z,ž,A,B,C,Č,Ć,D,Dž,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž",
+			"azbuka": "a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž,A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž",
 			"bata": {
 				"title": "Izaberi ime za bebu",
 				"naslov": "♥ ♥ ♥ ♥ ♥ Nazivač beba ♥ ♥ ♥ ♥ ♥",

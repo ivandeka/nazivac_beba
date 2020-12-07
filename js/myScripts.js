@@ -118,7 +118,7 @@ function sve(odakle, poSlovu){
 	setTimeout(function(){otkucajIme(poSlovu, ime);}, odakle * 1000);
 	setTimeout(kraj, pauza);
 	} catch(error){
-		
+
 	}
 }
 
@@ -249,8 +249,9 @@ function vratiKolacicObjekat(){
 function dodajImena(){
 	var polJezikTip = vratiPolJezikTip()
 	var input = document.getElementById('unosImena')
-	var string = input.value.replace(/ /g, '')
+	var string = obradiInput(input.value)
 	if (string === ''){
+		ocistiInput();
 		return
 	}
 	try {
@@ -591,6 +592,62 @@ function menjanjeTekstaJezika(){
 	document.getElementById('slanjeImena').innerText = ispisiTekst('dodajImenaDugme')
 	document.getElementById('obrisiSve').innerText = ispisiTekst('obrisiSve')
 }
+
+
+
+
+
+
+
+function procistiString(string, gdeSeDeli=','){
+	var procisceniString = string.split(gdeSeDeli)
+	var noviString = (function(){
+		let a = []
+		for (var i = 0; i < procisceniString.length; i++){
+			if (procisceniString[i].trim() != ''){
+				a.push(procisceniString[i].trim())
+			}
+		} return a.join(gdeSeDeli)
+	}
+	())
+	return noviString
+}
+
+function prvaSlovaVelika(string){
+	var podeljeniString = string.split(' ')
+	for (var i = 0; i < podeljeniString.length; i++){
+			podeljeniString[i] = podeljeniString[i][0].toUpperCase() + podeljeniString[i].slice(1,)
+		}
+	return podeljeniString.join(' ')
+}
+
+
+
+function obradiInput(punString, razdelnik=','){
+	var procisceniString = procistiString(punString)
+	var nizOdStringa = procisceniString.split(razdelnik)
+	var noviNiz = []
+	try {
+		for (var i = 0; i < nizOdStringa.length; i++){
+			noviNiz.push(prvaSlovaVelika(nizOdStringa[i]))
+		}
+	} catch(error){
+
+	}
+	return noviNiz.join(razdelnik)
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
