@@ -49,7 +49,6 @@ var tip = pjt.tipJezika
 try {
 	var slova = jezici[j][tip]['azbuka'].split(',')
 } catch(error){
-	var slova = jezici[j]['azbuka'].split(',')
 }
 
 function randomSlovo(){
@@ -107,7 +106,8 @@ function sve(odakle, poSlovu){
 	var item = vratiPolJezikTip()
 	var listaImena = JSON.parse(localStorage.getItem(item))
 	var pauza = 0
-	var ime = listaImena[Math.floor(Math.random() * listaImena.length)]
+	try {
+		var ime = listaImena[Math.floor(Math.random() * listaImena.length)]
 	for (var i = 1; i <= ime.length; i++){
 		pauza += poSlovu / i
 	}
@@ -117,6 +117,9 @@ function sve(odakle, poSlovu){
 	setTimeout(bubnjeviPocni, odakle * 1000);
 	setTimeout(function(){otkucajIme(poSlovu, ime);}, odakle * 1000);
 	setTimeout(kraj, pauza);
+	} catch(error){
+		
+	}
 }
 
 function kraj(){

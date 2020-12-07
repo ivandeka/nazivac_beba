@@ -40,16 +40,18 @@
     <div id="modal">
         <div id="iksic">x</div>
         <h3 id="polImena"></h3>
-        <div id="gornjaLinija">
-            <input id="unosImena" title="Kako biste dodali imena, unesite ih razdvojena zarezom." placeholder='Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' >
-            <button id="slanjeImena" onclick="dodajImena();" type="submit">Dodaj imena</button>
-            <p class="objasnjenje">Za dodavanje imena, razdvojite ih zarezom i kliknite na dugme "Dodaj imena"</p>
-        </div>
         <div id="omotacKolona">
             <div id="levaKolona">
-                <div id="pocetnaSlova"></div>
-                <div id="levaKolonaNaslov">Spisak predloženih imena:</div>
-                <ul id="predlozenaImena"></ul>
+                <div id="gornjaLinija">
+                    <input id="unosImena" title="Kako biste dodali imena, unesite ih razdvojena zarezom." placeholder='Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' >
+                    <button id="slanjeImena" onclick="dodajImena();" type="submit">Dodaj imena</button>
+                    <p class="objasnjenje">Za dodavanje imena, razdvojite ih zarezom i kliknite na dugme "Dodaj imena"</p>
+                </div>
+                <div id="svaImenaWrap">
+                    <div id="pocetnaSlova"></div>
+                    <div id="levaKolonaNaslov">Spisak predloženih imena:</div>
+                    <ul id="predlozenaImena"></ul>
+                </div>
             </div>
             <div id="desnaKolona">
                 <ul id="dodataImena">Dodata imena:</ul>
