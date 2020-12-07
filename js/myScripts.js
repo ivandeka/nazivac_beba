@@ -42,6 +42,7 @@ var t = document.getElementById("timer");
 const sledbenik = document.getElementById('sledbenik')
 const divZaPisanje = document.getElementById('prethodnik')
 
+
 var pjt = vratiKolacicObjekat()
 var j = pjt.jezik
 var tip = pjt.tipJezika
@@ -246,6 +247,9 @@ function dodajImena(){
 	var polJezikTip = vratiPolJezikTip()
 	var input = document.getElementById('unosImena')
 	var string = input.value.replace(/ /g, '')
+	if (string === ''){
+		return
+	}
 	try {
 		var prethodnaImena = new Set(JSON.parse(localStorage.getItem(polJezikTip).replace(/ /g, '').split(',')))
 	} catch(error) {
@@ -265,11 +269,13 @@ function klikniDaObrisesIme(){
 		var string = sviIksevi[i].parentElement.firstChild.data
 		sviIksevi[i].addEventListener('click', ukloniImenjesce)
 	}
+	prepoznajDodatoIme();
 }
 
 function ukloniImenjesce(element){
 	ukloniIme(this.parentElement.firstChild.data);
 	obrisiElement(this.parentElement);
+	prepoznajDodatoIme();
 }
 
 function obrisiSvaImena(){
@@ -320,6 +326,7 @@ function prikaziUnetaImena(){
 		list.appendChild(li)
 	}
 	klikniDaObrisesIme();
+	prepoznajDodatoIme();
 }
 
 
@@ -473,6 +480,7 @@ function imenaNaGomili(){
 			lista.appendChild(li)
 		}
 	}
+	prepoznajDodatoIme();
 	ocistiInput();
 	operacijeSaCekboksevima();
 }
@@ -507,7 +515,30 @@ function dodajImeNaSpisak(){
 			inputPolje.value += ',' + this.innerText
 		}
 	}
+	prepoznajDodatoIme();
+	dodajImena();
 }
+
+function prepoznajDodatoIme(){
+	var pjt = vratiPolJezikTip()
+	var lista = JSON.parse(localStorage.getItem(pjt))
+	var imena = document.getElementsByClassName('ime')
+	if (lista !== null){
+		for (var i = 0; i < imena.length; i++){
+			imena[i].classList.remove('odabranoIme')
+			if (lista.includes(imena[i].innerText)){
+				imena[i].classList.add('odabranoIme')
+			}
+		}
+	} else {
+		for (var i = 0; i < imena.length; i++){
+			imena[i].classList.remove('odabranoIme')
+		}
+	
+	}
+}
+
+
 
 function oduzmiImeSaSpiska(){
 	var inputPolje = document.getElementById('unosImena')
