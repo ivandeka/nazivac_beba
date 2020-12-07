@@ -17,12 +17,13 @@
 
 </head>
 
-<body onload="napraviKolacic();startnePozicije();animirajBebu()">
+<body onload="napraviKolacic();menjanjeTekstaJezika();startnePozicije();animirajBebu(10)">
 
-    <div id="dugmeZaModal" onclick="otvoriModal();">IMENA</div>
+    <div id="dugmeZaModal" onclick="otvoriModal();"></div>
 
     <div id="jezici">
         <div class="omotacZaJezik odabraniJezik">
+            <!-- <div class="defaultDugme"></div> -->
             <div class="zastava" data-jezik="srpski" data-tip="latinica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></div><span class="tipJezika">Latinica</span>
         </div>
         <div class="omotacZaJezik">
@@ -33,12 +34,12 @@
         </div>
     </div>
 
-	<h1 id="naslov">&#9829; &#9829; &#9829; &#9829; &#9829; Nazivač beba &#9829; &#9829; &#9829; &#9829; &#9829;</h1>
+	<h1 id="naslov"></h1>
     
     <div id="modalWrap"></div>
     <div id="modal">
         <div id="iksic">x</div>
-        <h3 id="polImena">Muška imena</h3>
+        <h3 id="polImena"></h3>
         <div id="gornjaLinija">
             <input id="unosImena" title="Kako biste dodali imena, unesite ih razdvojena zarezom." placeholder='Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' >
             <button id="slanjeImena" onclick="dodajImena();" type="submit">Dodaj imena</button>
@@ -58,21 +59,21 @@
     </div>
 
     <div id="wrapper">
-        <span class="zaToggler" id="bata">bata</span>
+        <span class="zaToggler" id="bata"></span>
         <label class="switch">
         <input type="checkbox" id="toggler" onclick="promenaPola()">
         <span class="slider round"></span>
         </label>
-        <span class="zaToggler" id="seka">seka</span>
+        <span class="zaToggler" id="seka"></span>
     </div>
     
     <div id="timer"></div>
 
-    <button id="create" onclick="sve(2, 3);this.disabled=true;this.innerText='Srećno!'">Klikni da saznaš ime!</button>
+    <button id="create" onclick="sve(10, 5);this.disabled=true;this.innerText=ispisiTekst('dugmeZaStartNeaktivno')"></button>
     <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
     <audio id="yeeey" src='src/yeeey.wav' type="audio/wav"></audio>
 
-    <p class="zvaceSe">Zvaće se:</p>
+    <p id="zvaceSe"></p>
     <p id="test"><span id="prethodnik"></span><span id="sledbenik"></span></p>
 
 

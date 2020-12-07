@@ -22,7 +22,7 @@
         }
 
         button {
-            height: 48px;
+            height: 3rem;
             text-align: center;
             display: block;
             border-radius: 10px;
@@ -189,6 +189,7 @@ input:checked + .slider:before {
     right: 10px;
     color: purple;
     border-radius: 1rem;
+    height: 3.5rem;
 }
 
 .zaToggler {
@@ -517,7 +518,7 @@ img {
 }
 
 .ime {
-    width: 180px;
+    width: 150px;
     float: left;
     height: 1.5rem;
     color: rgba(0,0,0,.2);
@@ -525,12 +526,14 @@ img {
     display: inline-block;
     cursor: pointer;
     font-weight: 600;
+    margin: 0 1rem;
 }
 
 .odabranoIme, .ime:hover {
     /*text-decoration: line-through;*/
     color: green;
-    transition: ease all .2s
+    transition: ease all .2s;
+    background-color: rgba(0,0,0,.05);
 }
 
 #predlozenaImena {
@@ -538,9 +541,25 @@ img {
     overflow-y: scroll;
 }
 
+/*.defaultDugme {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: rgba(255,255,255,.5);
+    position: absolute;
+    right: -4rem;
+    top: 0;
+    background-image: url('https://www.flaticon.com/svg/static/icons/svg/1828/1828970.svg');
+    transition: ease all .2s;
+    background-size: 2rem 2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 1rem;
+}
 
-
-
+.defaultDugme:hover {
+    background-image: url('https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg');
+}
+*/
 
 
 

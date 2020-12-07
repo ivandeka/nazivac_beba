@@ -1,10 +1,10 @@
 
-new CircleType(document.getElementById('naslov')).radius(640);
 
 
-const imena = ['Mlatimud', 'Bradilko', 'Sofronije', 'Alimpije', 'Ćelavko', 'Glavudžovski', 'Čićvu']
-const imenaZenska = ['Mlatimudica', 'Bradilka', 'Sofronija', 'Alimpijka', 'Ćelavica', 'Glavudžovska', 'Čićicavu']
-const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
+
+// const imena = ['Mlatimud', 'Bradilko', 'Sofronije', 'Alimpije', 'Ćelavko', 'Glavudžovski', 'Čićvu']
+// const imenaZenska = ['Mlatimudica', 'Bradilka', 'Sofronija', 'Alimpijka', 'Ćelavica', 'Glavudžovska', 'Čićicavu']
+// const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
 var pol = document.getElementById('toggler').value
 var startDugme = document.getElementById('create')
 var zastavice = document.getElementsByClassName('zastava')
@@ -20,7 +20,7 @@ document.getElementById('iksic').addEventListener('click', zatvoriModal);
 startDugme.addEventListener('click', function(){
 	var pjt = vratiPolJezikTip()
 	if (localStorage.getItem(pjt) === null){
-		alert(`Za ove parametre ne postoji unet spisak imena!`)
+		alert(ispisiTekst('alert'))
 		location.reload();
 	}
 
@@ -41,6 +41,15 @@ var t = document.getElementById("timer");
 
 const sledbenik = document.getElementById('sledbenik')
 const divZaPisanje = document.getElementById('prethodnik')
+
+var pjt = vratiKolacicObjekat()
+var j = pjt.jezik
+var tip = pjt.tipJezika
+try {
+	var slova = jezici[j][tip]['azbuka'].split(',')
+} catch(error){
+	var slova = jezici[j]['azbuka'].split(',')
+}
 
 function randomSlovo(){
     return slova[Math.floor(Math.random() * slova.length)]
@@ -345,6 +354,7 @@ function promenaJezika(element, promena){
 	napraviKolacic('jezik', this.firstElementChild.dataset.jezik);
 	napraviKolacic('tipJezika', this.firstElementChild.dataset.tip);
 	pozadinaZastavica(this);
+	window.location.reload();
 }
 
 function startnePozicije(){
@@ -387,6 +397,7 @@ function promenaPola(){
         document.getElementById('unosImena').placeholder = 'Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...'
         napraviKolacic('pol', 'bata')
     }
+    window.location.reload();
 }
 
 function vratiPJTImena(){
@@ -458,12 +469,7 @@ function imenaNaGomili(){
 		if (imenaZaPJT[i].startsWith(s)) {
 			li = document.createElement('li')
 			li.classList.add('ime')
-			// cb = document.createElement('input')
-			// cb.style.float = 'left'
-			// cb.type = 'checkbox'
 			li.innerText = imenaZaPJT[i]
-			// if (li.innerText)
-			// li.appendChild(cb)
 			lista.appendChild(li)
 		}
 	}
@@ -507,6 +513,81 @@ function oduzmiImeSaSpiska(){
 	var inputPolje = document.getElementById('unosImena')
 	console.log(this.parentElement.innerText)
 }
+
+
+function ispisiTekst(imePolja){
+	var pjt = vratiKolacicObjekat()
+	const pol = pjt.pol
+	const jezik = pjt.jezik
+	const tip = pjt.tipJezika
+	try {
+		return jezici[jezik][tip][pol][imePolja]
+	} catch(error){
+		return jezici[jezik][pol][imePolja]
+	}
+}
+
+
+function izmeniJezik(){
+	var bla = document.getElementsByClassName('omotacZaJezik')
+	for (var i = 0; i < bla.length; i++){
+		bla[i].addEventListener('click', window.location.reload)
+	}
+}
+
+
+function izmeniNaslov(tekst){
+	var naslovNiz = document.getElementById('naslov').firstChild
+	console.log(naslovNiz)
+}
+
+
+function menjanjeTekstaJezika(){
+	document.getElementById('bata').innerText = ispisiTekst('polLevi')
+	document.getElementById('seka').innerText = ispisiTekst('polDesni')
+	document.getElementById('naslov').innerText = ispisiTekst('naslov')
+	new CircleType(document.getElementById('naslov')).radius(640);
+	document.getElementById('dugmeZaModal').innerText = ispisiTekst('modalDugme')
+	document.getElementById('create').innerText = ispisiTekst('dugmeZaStart')
+	document.getElementById('zvaceSe').innerText = ispisiTekst('zvaceSe')
+	document.getElementById('polImena').innerText = ispisiTekst('modalNaslov')
+	document.getElementById('unosImena').placeholder = ispisiTekst('inputPlaceholder')
+	document.getElementsByClassName('objasnjenje')[0].innerText = ispisiTekst('inputOjasnjenje')
+	document.getElementById('levaKolonaNaslov').innerText = ispisiTekst('spisak')
+	document.getElementById('slanjeImena').innerText = ispisiTekst('dodajImenaDugme')
+	document.getElementById('obrisiSve').innerText = ispisiTekst('obrisiSve')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
