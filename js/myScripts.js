@@ -326,14 +326,28 @@ function prikaziUnetaImena(){
 	removeAllChildNodes(list)
 
 	for (var i = 0; i < imena.length; i++){
+		// var li = document.createElement('li')
+		// var span =  document.createElement('span')
+		// span.innerText = 'x'
+		// span.classList.add('beziDesno')
+		// span.classList.add('brisanje')
+		// li.innerText = imena[i]
+		// li.classList.add('imeNaListi')
+		// li.appendChild(span)
+		// list.appendChild(li)
+
+
 		var li = document.createElement('li')
 		var span =  document.createElement('span')
+		var span2 = document.createElement('span')
 		span.innerText = 'x'
 		span.classList.add('beziDesno')
 		span.classList.add('brisanje')
-		li.innerText = imena[i]
+		span2.classList.add('leviDeo')
+		span2.innerText = imena[i]
 		li.classList.add('imeNaListi')
 		li.appendChild(span)
+		li.appendChild(span2)
 		list.appendChild(li)
 	}
 	klikniDaObrisesIme();
@@ -639,12 +653,6 @@ function obradiInput(punString, razdelnik=','){
 	}
 	return noviNiz.join(razdelnik)
 }
-
-
-
-
-
-
 
 
 

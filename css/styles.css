@@ -546,6 +546,36 @@ img {
     overflow-y: scroll;
 }
 
+.leviDeo {
+    width: 85%;
+    float: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 2rem;
+    height: 2rem;
+}
+
+/*
+#podesavanjaJezicak {
+    width: 3rem;
+    height: 3rem;
+    background-color: gray;
+    position: absolute;
+    bottom: 3rem;
+    right: 0;
+    transition: ease all 1s;
+}
+
+#podesavanjaPanel {
+    height: 12rem;
+    width: 9rem;
+    background-color: red;
+    position: absolute;
+    bottom: 3rem;
+    right: -9rem;
+    transition: ease all 1s;
+}*/
+
 /*.defaultDugme {
     width: 3.5rem;
     height: 3.5rem;
