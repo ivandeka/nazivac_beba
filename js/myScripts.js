@@ -367,7 +367,7 @@ var odbijPodesavanja = document.getElementById('otkaziPodesavanja')
 	odbijPodesavanja.addEventListener('click', function(){
 		defaultPodesavanja();
 		otvoriZatvori(jezicakPodesavanja);
-		setTimeout(function(){location.reload()}, 500);
+		setTimeout(function(){location.reload()}, 1000);
 	})
 
 function snimiPodesavanja(){
@@ -380,7 +380,7 @@ function snimiPodesavanja(){
 		localStorage.setItem('poSlovu', poSlovu)
 		localStorage.setItem('brojBeba', brojBeba)
 		otvoriZatvori(jezicakPodesavanja)
-		setTimeout(function(){location.reload()}, 500);
+		setTimeout(function(){location.reload()}, 1000);
 	}
 }
 
@@ -691,8 +691,13 @@ function otvoriZatvori(e){
 
 	if (e.classList[0] === 'otvoreno'){
 		var panel = document.getElementById('podesavanjaPanel')
-		e.style.right = '0rem'
-		panel.style.right = '-12rem'
+		e.style.right = '15rem'
+		panel.style.right = '5rem'
+		setTimeout(function(){
+			e.style.right = '0rem'
+			panel.style.right = '-12rem'
+		}, 500)
+		
 		e.classList.remove('otvoreno')
 		e.classList.add('zatvoreno')
 	}
