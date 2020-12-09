@@ -17,23 +17,7 @@ for (i = 0; i < jezikDiv.length; i++){
 
 document.getElementById('iksic').addEventListener('click', zatvoriModal);
 
-startDugme.addEventListener('click', function(){
-	var pjt = vratiPolJezikTip()
-	if (localStorage.getItem(pjt) === null){
-		alert(ispisiTekst('alert'))
-		location.reload();
-	}
 
-	iskljuciToggler();
-    const dugme = document.getElementById('dugmeZaModal')
-    const dugmeZaJezike = document.getElementById('jezici')
-    dugme.style.cursor = "not-allowed"
-    dugme.onclick = ""
-    for (i = 0; i < jezikDiv.length; i++){
-    	jezikDiv[i].style.cursor = "not-allowed"
-    	jezikDiv[i].removeEventListener('click', promenaJezika)
-    }
-});
 
 
 
@@ -108,25 +92,27 @@ function otkucajIme(trajanjePoSlovu, ime){
 	}
 }
 
-function sve(odakle, poSlovu){
+
+function sve(odakle, vremePoSlovu){
 	var item = vratiPolJezikTip()
 	var listaImena = JSON.parse(localStorage.getItem(item))
 	var pauza = 0
 	try {
 		var ime = listaImena[Math.floor(Math.random() * listaImena.length)]
 	for (var i = 1; i <= ime.length; i++){
-		pauza += poSlovu / i
+		pauza += vremePoSlovu / i
 	}
 	pauza += odakle
 	pauza *= 1000
 	odbrojavanje(odakle);
 	setTimeout(bubnjeviPocni, odakle * 1000);
-	setTimeout(function(){otkucajIme(poSlovu, ime);}, odakle * 1000);
+	setTimeout(function(){otkucajIme(vremePoSlovu, ime);}, odakle * 1000);
 	setTimeout(kraj, pauza);
 	} catch(error){
 
 	}
 }
+
 
 function kraj(){
 	bubnjeviZavrsi();
@@ -165,7 +151,7 @@ function animacija(div){
 	const elemenat = document.getElementById(div)
 	const brzine = [0.5, 0.75, 0.9, 0.67, 1, 1.2, 1.5,]
 	const visinaSlikeNiz = [100, 150, 200, 250, 300, 350, 400, 450]
-	const sirinaEkrana = window.innerWidth
+	const sirinaEkrana = window.innerWidth - 450
 	elemenat.style.bottom = "0px"
 	var randomVisina = visinaSlikeNiz[Math.floor(Math.random() * visinaSlikeNiz.length)]
 	var start = -randomVisina
@@ -332,17 +318,6 @@ function prikaziUnetaImena(){
 	removeAllChildNodes(list)
 
 	for (var i = 0; i < imena.length; i++){
-		// var li = document.createElement('li')
-		// var span =  document.createElement('span')
-		// span.innerText = 'x'
-		// span.classList.add('beziDesno')
-		// span.classList.add('brisanje')
-		// li.innerText = imena[i]
-		// li.classList.add('imeNaListi')
-		// li.appendChild(span)
-		// list.appendChild(li)
-
-
 		var li = document.createElement('li')
 		var span =  document.createElement('span')
 		var span2 = document.createElement('span')
@@ -378,23 +353,38 @@ function startnaPodesavanja(element, izmena){
 	}
 }
 
-startnaPodesavanja('odbrojavanje', '10')
-startnaPodesavanja('poSlovu', '5')
-startnaPodesavanja('brojBeba', '10')
+function defaultPodesavanja(){
+	promeniPodesavanja('odbrojavanje', '10')
+	promeniPodesavanja('poSlovu', '5')
+	promeniPodesavanja('brojBeba', '10')
+}
 
 
 var sacuvajPodesavanja = document.getElementById('snimiPodesavanja')
 	sacuvajPodesavanja.addEventListener('click', snimiPodesavanja)
 
+var odbijPodesavanja = document.getElementById('otkaziPodesavanja')
+	odbijPodesavanja.addEventListener('click', function(){
+		defaultPodesavanja();
+		otvoriZatvori(jezicakPodesavanja);
+		setTimeout(function(){location.reload()}, 500);
+	})
+
 function snimiPodesavanja(){
 	var odbrojavanje = document.getElementsByName('odbrojavanje')[0].value
 	var poSlovu = document.getElementsByName('vremeZaSlovo')[0].value
 	var brojBeba = document.getElementsByName('brojBeba')[0].value
-	localStorage.setItem('odbrojavanje', odbrojavanje)
-	localStorage.setItem('poSlovu', poSlovu)
-	localStorage.setItem('brojBeba', brojBeba)
 	
+	if (parseInt(odbrojavanje) >= 0 && parseInt(poSlovu) >= 0 && parseInt(brojBeba) >= 0){
+		localStorage.setItem('odbrojavanje', odbrojavanje)
+		localStorage.setItem('poSlovu', poSlovu)
+		localStorage.setItem('brojBeba', brojBeba)
+		otvoriZatvori(jezicakPodesavanja)
+		setTimeout(function(){location.reload()}, 500);
+	}
 }
+
+
 
 
 function napraviKolacic(element, izmena){
@@ -692,25 +682,26 @@ var jezicakPodesavanja = document.getElementById('podesavanjaJezicak')
 	jezicakPodesavanja.addEventListener('mouseout', function(){
 		this.firstElementChild.src = 'src/nerd-emoji-svgrepo-com.svg'
 	})
-	jezicakPodesavanja.addEventListener('click', otvoriZatvori)
+	jezicakPodesavanja.addEventListener('click', function(){otvoriZatvori(jezicakPodesavanja)})
 
-function otvoriZatvori(){
+function otvoriZatvori(e){
 	document.getElementsByName('odbrojavanje')[0].value = localStorage.odbrojavanje
 	document.getElementsByName('brojBeba')[0].value = localStorage.brojBeba
 	document.getElementsByName('vremeZaSlovo')[0].value = localStorage.poSlovu
-	if (this.firstElementChild.classList[0] === 'otvoreno'){
+
+	if (e.classList[0] === 'otvoreno'){
 		var panel = document.getElementById('podesavanjaPanel')
-		this.style.right = '0rem'
+		e.style.right = '0rem'
 		panel.style.right = '-12rem'
-		this.firstElementChild.classList.remove('otvoreno')
-		this.firstElementChild.classList.add('zatvoreno')
+		e.classList.remove('otvoreno')
+		e.classList.add('zatvoreno')
 	}
 		else {
 		var panel = document.getElementById('podesavanjaPanel')
-		this.style.right = '12rem'
+		e.style.right = '12rem'
 		panel.style.right = '0rem'
-		this.firstElementChild.classList.remove('zatvoreno')
-		this.firstElementChild.classList.add('otvoreno')}
+		e.classList.remove('zatvoreno')
+		e.classList.add('otvoreno')}
 	}
 
 
@@ -718,10 +709,11 @@ function otvoriZatvori(){
 
 var titrator
 
-document.getElementById('snimiPodesavanja').addEventListener('mouseenter', drmusanje)
-document.getElementById('snimiPodesavanja').addEventListener('mouseout', function(){clearInterval(titrator)})
-document.getElementById('otkaziPodesavanja').addEventListener('mouseover', drmusanje)
-document.getElementById('otkaziPodesavanja').addEventListener('mouseout', function(){clearInterval(titrator)})
+
+sacuvajPodesavanja.addEventListener('mouseenter', drmusanje)
+sacuvajPodesavanja.addEventListener('mouseout', function(){clearInterval(titrator)})
+odbijPodesavanja.addEventListener('mouseover', drmusanje)
+odbijPodesavanja.addEventListener('mouseout', function(){clearInterval(titrator)})
 
 function drmusanje(){
 	const s = window.getComputedStyle(this)
@@ -744,8 +736,36 @@ function drmusanje(){
 }
 
 
+window.addEventListener('load', (function(){
+	napraviKolacic();
+	startnaPodesavanja('odbrojavanje', '10');
+	startnaPodesavanja('poSlovu', '5');
+	startnaPodesavanja('brojBeba', '10');
+	menjanjeTekstaJezika();
+	startnePozicije();
+	animirajBebu(Number(localStorage.getItem('brojBeba')));
+}))
 
+startDugme.addEventListener('click', function(){
+	var pjt = vratiPolJezikTip()
+	if (localStorage.getItem(pjt) === null){
+		alert(ispisiTekst('alert'))
+		location.reload();
+	}
 
+	iskljuciToggler();
+    const dugme = document.getElementById('dugmeZaModal')
+    const dugmeZaJezike = document.getElementById('jezici')
+    dugme.style.cursor = "not-allowed"
+    dugme.onclick = ""
+    for (i = 0; i < jezikDiv.length; i++){
+    	jezikDiv[i].style.cursor = "not-allowed"
+    	jezikDiv[i].removeEventListener('click', promenaJezika)
+    }
+    sve(Number(localStorage.getItem('odbrojavanje')), Number(localStorage.getItem('poSlovu')));
+    this.disabled=true;
+    this.innerText=ispisiTekst('dugmeZaStartNeaktivno')
+});
 
 
 
