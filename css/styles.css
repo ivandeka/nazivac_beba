@@ -555,26 +555,63 @@ img {
     height: 2rem;
 }
 
-/*
+
 #podesavanjaJezicak {
-    width: 3rem;
-    height: 3rem;
-    background-color: gray;
+    width: 3.5rem;
+    height: 3.5rem;
     position: absolute;
-    bottom: 3rem;
+    bottom: .5rem;
     right: 0;
-    transition: ease all 1s;
+    transition: ease all .6s;
+    cursor: pointer;
 }
 
 #podesavanjaPanel {
-    height: 12rem;
-    width: 9rem;
-    background-color: red;
+    height: 15rem;
+    width: 12rem;
+    background-color: rgba(255,255,255,.7);
+    border-radius: 1rem;
     position: absolute;
-    bottom: 3rem;
-    right: -9rem;
-    transition: ease all 1s;
-}*/
+    bottom: .5rem;
+    right: -12rem;
+    transition: ease all .5s;
+}
+
+.red {
+    padding: 10px;
+    height: 2rem;
+}
+
+input[type="Number"]{
+    font-size: 2rem;
+    width: 60%;
+}
+
+img.panelIkonica {
+    height: 2rem;
+    width: 2rem;
+    vertical-align: text-bottom;
+}
+
+.daNe {
+    height: 4rem;
+    width: 5rem;
+    cursor: pointer;
+}
+
+#snimiPodesavanja {
+    position: absolute;
+    right: 6rem;
+    bottom: .5rem;
+}
+
+#otkaziPodesavanja {
+    position: absolute;
+    right: 1rem;
+    bottom: .5rem;
+}
+
+
 
 /*.defaultDugme {
     width: 3.5rem;

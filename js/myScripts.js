@@ -34,6 +34,9 @@ startDugme.addEventListener('click', function(){
     	jezikDiv[i].removeEventListener('click', promenaJezika)
     }
 });
+
+
+
 document.getElementById('modalWrap').addEventListener('click', zatvoriModal);
 
 var counter = document.getElementById('cnt');
@@ -43,15 +46,18 @@ const sledbenik = document.getElementById('sledbenik')
 const divZaPisanje = document.getElementById('prethodnik')
 
 
-var pjt = vratiKolacicObjekat()
-var j = pjt.jezik
-var tip = pjt.tipJezika
-try {
-	var slova = jezici[j][tip]['azbuka'].split(',')
-} catch(error){
-}
+
+
 
 function randomSlovo(){
+	var pjt = vratiKolacicObjekat()
+	var j = pjt.jezik
+	var tip = pjt.tipJezika
+	try {
+		var slova = jezici[j][tip]['azbuka'].split(',')
+	} catch(error){
+		var slova = jezici[j]['azbuka'].split(',')
+	}
     return slova[Math.floor(Math.random() * slova.length)]
 }
 
@@ -362,6 +368,35 @@ function removeAllChildNodes(parent) {
     }
 }
 
+function promeniPodesavanja(element, izmena){
+	localStorage.setItem(element, izmena)
+}
+
+function startnaPodesavanja(element, izmena){
+	if (!localStorage.getItem(element)){
+		promeniPodesavanja(element, izmena)
+	}
+}
+
+startnaPodesavanja('odbrojavanje', '10')
+startnaPodesavanja('poSlovu', '5')
+startnaPodesavanja('brojBeba', '10')
+
+
+var sacuvajPodesavanja = document.getElementById('snimiPodesavanja')
+	sacuvajPodesavanja.addEventListener('click', snimiPodesavanja)
+
+function snimiPodesavanja(){
+	var odbrojavanje = document.getElementsByName('odbrojavanje')[0].value
+	var poSlovu = document.getElementsByName('vremeZaSlovo')[0].value
+	var brojBeba = document.getElementsByName('brojBeba')[0].value
+	localStorage.setItem('odbrojavanje', odbrojavanje)
+	localStorage.setItem('poSlovu', poSlovu)
+	localStorage.setItem('brojBeba', brojBeba)
+	
+}
+
+
 function napraviKolacic(element, izmena){
 	const standardniDeo = 'path=/; sameSite=Strict'
 	if (document.cookie === ''){
@@ -610,12 +645,6 @@ function menjanjeTekstaJezika(){
 	document.getElementById('obrisiSve').innerText = ispisiTekst('obrisiSve')
 }
 
-
-
-
-
-
-
 function procistiString(string, gdeSeDeli=','){
 	var procisceniString = string.split(gdeSeDeli)
 	var noviString = (function(){
@@ -653,6 +682,83 @@ function obradiInput(punString, razdelnik=','){
 	}
 	return noviNiz.join(razdelnik)
 }
+
+
+var jezicakPodesavanja = document.getElementById('podesavanjaJezicak')
+	jezicakPodesavanja.addEventListener('mouseenter', function(){
+		this.firstElementChild.src = 'src/nerd-emoji-svgrepo-com copy.svg'
+	})
+	jezicakPodesavanja = document.getElementById('podesavanjaJezicak')
+	jezicakPodesavanja.addEventListener('mouseout', function(){
+		this.firstElementChild.src = 'src/nerd-emoji-svgrepo-com.svg'
+	})
+	jezicakPodesavanja.addEventListener('click', otvoriZatvori)
+
+function otvoriZatvori(){
+	document.getElementsByName('odbrojavanje')[0].value = localStorage.odbrojavanje
+	document.getElementsByName('brojBeba')[0].value = localStorage.brojBeba
+	document.getElementsByName('vremeZaSlovo')[0].value = localStorage.poSlovu
+	if (this.firstElementChild.classList[0] === 'otvoreno'){
+		var panel = document.getElementById('podesavanjaPanel')
+		this.style.right = '0rem'
+		panel.style.right = '-12rem'
+		this.firstElementChild.classList.remove('otvoreno')
+		this.firstElementChild.classList.add('zatvoreno')
+	}
+		else {
+		var panel = document.getElementById('podesavanjaPanel')
+		this.style.right = '12rem'
+		panel.style.right = '0rem'
+		this.firstElementChild.classList.remove('zatvoreno')
+		this.firstElementChild.classList.add('otvoreno')}
+	}
+
+
+
+
+var titrator
+
+document.getElementById('snimiPodesavanja').addEventListener('mouseenter', drmusanje)
+document.getElementById('snimiPodesavanja').addEventListener('mouseout', function(){clearInterval(titrator)})
+document.getElementById('otkaziPodesavanja').addEventListener('mouseover', drmusanje)
+document.getElementById('otkaziPodesavanja').addEventListener('mouseout', function(){clearInterval(titrator)})
+
+function drmusanje(){
+	const s = window.getComputedStyle(this)
+	const desnoPocetno = Number(s.right.split('px')[0])
+	const dolePocetno = Number(s.bottom.split('px')[0])
+	const stilovi = ['desno', 'dole']
+
+	const interval = 50
+
+	titrator = setInterval(function(){
+		var izbor = stilovi[Math.floor(Math.random() * stilovi.length)]
+		if (izbor === 'desno'){
+			this.style.right = `${desnoPocetno + Math.random() * 3}px`
+			setTimeout(function(){this.style.right = desnoPocetno}.bind(this), interval / 2)
+		} else {
+			this.style.bottom = `${dolePocetno + Math.random() * 3}px`
+			setTimeout(function(){this.style.bottom = dolePocetno}.bind(this), interval / 2)
+		}
+	}.bind(this), interval)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
