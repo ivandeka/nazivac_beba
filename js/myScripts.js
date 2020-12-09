@@ -774,10 +774,26 @@ startDugme.addEventListener('click', function(){
 
 
 
+// function dodajSenkuTekstu(div, xStart, xCilj, xRazvucenost, yRazvucenost, yStart, yCilj, rgbaBoja){
+// 	var napuniNiz = function(start, cilj, razvucenost){
+// 		var niz = []
+// 		if (start > cilj){
+// 			for (var i = start; i >= cilj; i += razvucenost){
+// 				niz.push(i)
+// 			}
+// 			} else {
+// 			for (var i = start; i <= cilj; i -= razvucenost){
+// 				niz.push(i)
+// 			}}
+// 		return niz
+// 	}
+// 	var iksevi = napuniNiz(xStart, xCilj, xRazvucenost)
+// 	var ipsilonovi = napuniNiz(yStart, yCilj, yRazvucenost)
+// 	return iksevi
 
+// }
 
-
-
+// console.log(dodajSenkuTekstu('bkl', 0, -6, 9, 16))
 
 
 
