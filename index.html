@@ -22,16 +22,21 @@
     <div id="dugmeZaModal" onclick="otvoriModal();"></div>
 
     <div id="jezici">
-        <div class="omotacZaJezik odabraniJezik">
+        <button class="omotacZaJezik odabraniJezik">
             <!-- <div class="defaultDugme"></div> -->
             <div class="zastava" data-jezik="srpski" data-tip="latinica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></div><span class="tipJezika">Latinica</span>
-        </div>
-        <div class="omotacZaJezik">
+        </button>
+        <button class="omotacZaJezik">
             <div class="zastava" data-jezik="srpski" data-tip="cirilica"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206781.svg"></div><span class="tipJezika">Ћирилица</span>
-        </div>
-        <div class="omotacZaJezik">
+        </button>
+        <button class="omotacZaJezik">
             <div class="zastava" data-jezik="engleski" data-tip="nema"><img src="https://www.flaticon.com/svg/static/icons/svg/206/206626.svg"></div>
-        </div>
+        </button>
+    </div>
+    <div id="favoriti">
+        <img class="zvezdica" src="src/favorite-svgrepo-com.svg" name="srpski_latinica" data-opis="zvezdicaOpis">
+        <img class="zvezdica" src="src/favorite-svgrepo-com.svg" name="srpski_cirilica" data-opis="zvezdicaOpis">
+        <img class="zvezdica" src="src/favorite-svgrepo-com.svg" name="engleski" data-opis="zvezdicaOpis">
     </div>
 
 	<h1 id="naslov"></h1>
@@ -43,7 +48,7 @@
         <div id="omotacKolona">
             <div id="levaKolona">
                 <div id="gornjaLinija">
-                    <input id="unosImena" title="Kako biste dodali imena, unesite ih razdvojena zarezom." placeholder='Na primer: "Splinter,Donatelo, Leonardo,Mikelanđelo" ...' >
+                    <input id="unosImena" placeholder='ispisiTekst("inputPlaceholder")'>
                     <button id="slanjeImena" onclick="dodajImena();" type="submit">Dodaj imena</button>
                     <p class="objasnjenje">Za dodavanje imena, razdvojite ih zarezom i kliknite na dugme "Dodaj imena"</p>
                 </div>

@@ -1,6 +1,7 @@
 const jezici = {
 	"srpski": {
 		"latinica": {
+			"zvezdicaOpis": "Klikni na ikonicu zvezdice da sačuvaš jezik kao podrazumevani.",
 			"azbuka": "a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž,A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž",
 			"bata": {
 				"title": "Izaberi ime za bebu",
@@ -14,6 +15,7 @@ const jezici = {
 				"modalDugme": "IMENA",
 				"modalNaslov": "Muška imena",
 				"inputPlaceholder": "Na primer: \"Splinter,Donatelo, Leonadro,Mikelanđelo\"",
+				"inputBaloncic": "Kako biste dodali imena, unesite ih razdvojena zarezom.",
 				"inputOjasnjenje": "Za dodavanje imena, razdvojite ih zarezom i kliknite na dugme \"Dodaj imena\"",
 				"spisak": "Spisak predloženih imena:",
 				"dodajImenaDugme": "Dodaj imena",
@@ -31,6 +33,7 @@ const jezici = {
 				"modalDugme": "IMENA",
 				"modalNaslov": "Ženska imena",
 				"inputPlaceholder": "Na primer: \"Ceca,Dragana, Zorica,Vesna\"",
+				"inputBaloncic": "Kako biste dodali imena, unesite ih razdvojena zarezom.",
 				"inputOjasnjenje": "Za dodavanje imena, razdvojite ih zarezom i kliknite na dugme \"Dodaj imena\"",
 				"spisak": "Spisak predloženih imena:",
 				"dodajImenaDugme": "Dodaj imena",
@@ -38,6 +41,7 @@ const jezici = {
 			}
 		},
 		"cirilica": {
+			"zvezdicaOpis": "Кликни на иконицу звездице да сачуваш језик као подразумевани.",
 			"azbuka": "А,Б,В,Г,Д,Ђ,Е,Ж,З,И,Ј,К,Л,Љ,М,Н,Њ,О,П,Р,С,Т,Ћ,У,Ф,Х,Ц,Ч,Џ,Ш,а,б,в,г,д,ђ,е,ж,з,и,ј,к,л,љ,м,н,њ,о,п,р,с,т,ћ,у,ф,х,ц,ч,џ,ш",
 			"bata": {
 				"title": "Изабери име за бебу",
@@ -51,6 +55,7 @@ const jezici = {
 				"modalDugme": "ИМЕНА",
 				"modalNaslov": "Мушка имена",
 				"inputPlaceholder": "На пример: \"Сплинтер,Донатело, Леонадро,Микеланђело\"",
+				"inputBaloncic": "Како бисте додали имена, унесите их раздвојена зарезом.",
 				"inputOjasnjenje": "За додавање имена, раздвојите их зарезом и кликните на дугме \"Додај имена\"",
 				"spisak": "Списак предложених имена:",
 				"dodajImenaDugme": "Додај имена",
@@ -68,6 +73,7 @@ const jezici = {
 				"modalDugme": "ИМЕНА",
 				"modalNaslov": "Женска имена",
 				"inputPlaceholder": "На пример: \"Цеца,Драгана, Зорица,Весна\"",
+				"inputBaloncic": "Како бисте додали имена, унесите их раздвојена зарезом.",
 				"inputOjasnjenje": "За додавање имена, раздвојите их зарезом и кликните на дугме \"Додај имена\"",
 				"spisak": "Списак предложених имена:",
 				"dodajImenaDugme": "Додај имена",
@@ -76,6 +82,7 @@ const jezici = {
 		}
 	},
 	"engleski": {
+		"zvezdicaOpis": "Click the star icon to save the langauage as default.",
 		"azbuka": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z",
 		"bata": {
 			"title": "Choose baby's name",
@@ -89,6 +96,7 @@ const jezici = {
 			"modalDugme": "NAMES",
 			"modalNaslov": "Male names",
 			"inputPlaceholder": "For example: \"Splinter,Donatello, Leonadro,Michelangelo\"",
+			"inputBaloncic": "In order to add the names, make sure to separate them with comma.",
 			"inputOjasnjenje": "To add a name, divide them with comma and click on \"Add name(s)\"",
 			"spisak": "The list of suggested names:",
 			"dodajImenaDugme": "Add name(s)",
@@ -106,6 +114,7 @@ const jezici = {
 			"modalDugme": "NAMES",
 			"modalNaslov": "Female names",
 			"inputPlaceholder": "For example: \"Gaga,Madonna, Beyonce,Rhianna\"",
+			"inputBaloncic": "In order to add the names, make sure to separate them with comma.",
 			"inputOjasnjenje": "To add a name, divide them with comma and click on \"Add name(s)\"",
 			"spisak": "The list of suggested names:",
 			"dodajImenaDugme": "Add name(s)",

@@ -1,10 +1,5 @@
 
 
-
-
-// const imena = ['Mlatimud', 'Bradilko', 'Sofronije', 'Alimpije', 'Ćelavko', 'Glavudžovski', 'Čićvu']
-// const imenaZenska = ['Mlatimudica', 'Bradilka', 'Sofronija', 'Alimpijka', 'Ćelavica', 'Glavudžovska', 'Čićicavu']
-// const slova = 'A,B,C,Č,Ć,D,Đ,E,F,G,H,I,J,K,L,M,N,O,P,R,S,Š,T,U,V,Z,Ž,a,b,c,č,ć,d,đ,e,f,g,h,i,j,k,l,m,n,o,p,r,s,š,t,u,v,z,ž'.split(',')
 var pol = document.getElementById('toggler').value
 var startDugme = document.getElementById('create')
 var zastavice = document.getElementsByClassName('zastava')
@@ -97,8 +92,7 @@ function sve(odakle, vremePoSlovu){
 	var item = vratiPolJezikTip()
 	var listaImena = JSON.parse(localStorage.getItem(item))
 	var pauza = 0
-	try {
-		var ime = listaImena[Math.floor(Math.random() * listaImena.length)]
+	var ime = listaImena[Math.floor(Math.random() * listaImena.length)]
 	for (var i = 1; i <= ime.length; i++){
 		pauza += vremePoSlovu / i
 	}
@@ -108,9 +102,6 @@ function sve(odakle, vremePoSlovu){
 	setTimeout(bubnjeviPocni, odakle * 1000);
 	setTimeout(function(){otkucajIme(vremePoSlovu, ime);}, odakle * 1000);
 	setTimeout(kraj, pauza);
-	} catch(error){
-
-	}
 }
 
 
@@ -370,16 +361,30 @@ var odbijPodesavanja = document.getElementById('otkaziPodesavanja')
 		setTimeout(function(){location.reload()}, 1000);
 	})
 
+
+var odbrojavanjeElem = document.getElementsByName('odbrojavanje')[0]
+var poSlovuElem = document.getElementsByName('vremeZaSlovo')[0]
+var brojBebaElem = document.getElementsByName('brojBeba')[0]
+
+for (element of [odbrojavanjeElem, poSlovuElem, brojBebaElem]){
+	element.addEventListener('keypress', function(event){
+		if (event.keyCode === 13){
+			snimiPodesavanja();
+		}
+	})
+}
+
 function snimiPodesavanja(){
-	var odbrojavanje = document.getElementsByName('odbrojavanje')[0].value
-	var poSlovu = document.getElementsByName('vremeZaSlovo')[0].value
-	var brojBeba = document.getElementsByName('brojBeba')[0].value
+	var odbrojavanje = odbrojavanjeElem.value
+	var poSlovu = poSlovuElem.value
+	var brojBeba = brojBebaElem.value
 	
 	if (parseInt(odbrojavanje) >= 0 && parseInt(poSlovu) >= 0 && parseInt(brojBeba) >= 0){
 		localStorage.setItem('odbrojavanje', odbrojavanje)
 		localStorage.setItem('poSlovu', poSlovu)
 		localStorage.setItem('brojBeba', brojBeba)
 		otvoriZatvori(jezicakPodesavanja)
+		animirajBebu(localStorage.getItem('brojBeba'))
 		setTimeout(function(){location.reload()}, 1000);
 	}
 }
@@ -389,6 +394,23 @@ function snimiPodesavanja(){
 
 function napraviKolacic(element, izmena){
 	const standardniDeo = 'path=/; sameSite=Strict'
+	const podrazumevani = localStorage.getItem('podrazumevaniJezik')
+	// var podrazumevaniJezik = localStorage.getItem('podrazumevaniJezik')
+	// if (podrazumevaniJezik){
+	// 	var j = podrazumevaniJezik.split('_')[0]
+	// 	var tj = podrazumevaniJezik.split('_')[1] || 'nema'
+	// 	document.cookie = 'pol=bata; ' + standardniDeo
+	// 	document.cookie = `jezik=${j}; ` + standardniDeo
+	// 	document.cookie = `tipJezika=${tj}; ` + standardniDeo
+	// 	return
+	// }
+	if (podrazumevani){
+		document.cookie = 'pol=bata; ' + standardniDeo
+		document.cookie = `jezik=${podrazumevani.split('_')[0]}; ` + standardniDeo
+		document.cookie = `tipJezika=${podrazumevani.split('_')[1] || 'nema'}; ` + standardniDeo
+		return
+	}
+
 	if (document.cookie === ''){
 		document.cookie = 'pol=bata; ' + standardniDeo
 		document.cookie = 'jezik=srpski; ' + standardniDeo
@@ -399,6 +421,7 @@ function napraviKolacic(element, izmena){
 		document.cookie = `${element}=${izmena}; ` + standardniDeo
 	}
 }
+
 
 function pozadinaZastavica(element){
 	for (i = 0; i < jezikDiv.length; i++){
@@ -604,6 +627,17 @@ function ispisiTekst(imePolja){
 	}
 }
 
+function opisTekst(imePolja) {
+	var pjt = vratiKolacicObjekat()
+	var jezik = pjt.jezik
+	var tip = pjt.tipJezika
+	try {
+		return jezici[jezik][tip][imePolja]
+	} catch(error){
+		return jezici[jezik][imePolja]
+	}
+}
+
 
 function izmeniJezik(){
 	var bla = document.getElementsByClassName('omotacZaJezik')
@@ -633,6 +667,7 @@ function menjanjeTekstaJezika(){
 	document.getElementById('levaKolonaNaslov').innerText = ispisiTekst('spisak')
 	document.getElementById('slanjeImena').innerText = ispisiTekst('dodajImenaDugme')
 	document.getElementById('obrisiSve').innerText = ispisiTekst('obrisiSve')
+	document.getElementById('unosImena').title = ispisiTekst('inputBaloncic')
 }
 
 function procistiString(string, gdeSeDeli=','){
@@ -714,7 +749,6 @@ function otvoriZatvori(e){
 
 var titrator
 
-
 sacuvajPodesavanja.addEventListener('mouseenter', drmusanje)
 sacuvajPodesavanja.addEventListener('mouseout', function(){clearInterval(titrator)})
 odbijPodesavanja.addEventListener('mouseover', drmusanje)
@@ -749,13 +783,14 @@ window.addEventListener('load', (function(){
 	menjanjeTekstaJezika();
 	startnePozicije();
 	animirajBebu(Number(localStorage.getItem('brojBeba')));
+	zakljucajOstale();
 }))
 
 startDugme.addEventListener('click', function(){
 	var pjt = vratiPolJezikTip()
 	if (localStorage.getItem(pjt) === null){
 		alert(ispisiTekst('alert'))
-		location.reload();
+		return
 	}
 
 	iskljuciToggler();
@@ -773,58 +808,110 @@ startDugme.addEventListener('click', function(){
 });
 
 
-
-// function dodajSenkuTekstu(div, xStart, xCilj, xRazvucenost, yRazvucenost, yStart, yCilj, rgbaBoja){
-// 	var napuniNiz = function(start, cilj, razvucenost){
-// 		var niz = []
-// 		if (start > cilj){
-// 			for (var i = start; i >= cilj; i += razvucenost){
-// 				niz.push(i)
-// 			}
-// 			} else {
-// 			for (var i = start; i <= cilj; i -= razvucenost){
-// 				niz.push(i)
-// 			}}
-// 		return niz
-// 	}
-// 	var iksevi = napuniNiz(xStart, xCilj, xRazvucenost)
-// 	var ipsilonovi = napuniNiz(yStart, yCilj, yRazvucenost)
-// 	return iksevi
-
-// }
-
-// console.log(dodajSenkuTekstu('bkl', 0, -6, 9, 16))
+var zvezdice = document.getElementsByClassName('zvezdica')
+for (zvezdica of zvezdice){
+	if (localStorage.podrazumevaniJezik && zvezdica.name === localStorage.getItem('podrazumevaniJezik')){
+		zvezdica.classList.add('oznacena')
+		zvezdica.src='src/favorite-svgrepo-com (1).svg'
+	}
+	zvezdica.addEventListener('click', oznaciZvezdicu)
+}
 
 
+function oznaciZvezdicu(){
+	if (this.classList[1] === 'oznacena'){
+		this.classList.remove('oznacena')
+		localStorage.removeItem('podrazumevaniJezik')
+		location.reload();
+		return
+	}
+
+	for (zvezdica of zvezdice){zvezdica.classList.remove('oznacena'); zvezdica.src='src/favorite-svgrepo-com.svg';}
+	this.src = 'src/favorite-svgrepo-com (1).svg'
+	this.classList.add('oznacena')
+	promeniPodesavanja('podrazumevaniJezik', this.name)
+	postaviPodrazumevaniJezik();
+	location.reload()
+}
 
 
+function postaviPodrazumevaniJezik(){
+	const jezikTip = localStorage.getItem('podrazumevaniJezik')
+	const jezik = jezikTip.split('_')[0]
+	const tip = jezikTip.split('_')[1] || 'nema'
+	napraviKolacic('jezik', jezik)
+	napraviKolacic('tipJezika', tip)
+}
 
 
+function zakljucajOstale(element){
+	if (localStorage.getItem('podrazumevaniJezik')) {
+		var sve = document.getElementsByClassName('omotacZaJezik')
+		for (dugme of sve){
+			if (dugme.classList[1] === 'odabraniJezik'){
+				dugme.removeAttribute('disabled')
+			} else {
+				dugme.disabled = 'true'
+			}
+		}
+	}
+}
+
+var opisB
+var sX
+var sY
+var cX
+var cY
+
+function opisBaloncici(){
+	if (this.dataset.opis) {
+		opisB = setTimeout(function(){
+			napraviBaloncic(this);
+
+		}.bind(this), 1000)
+	}
+}
 
 
+const sviElementi = document.all
+	for (element of sviElementi){
+		if (element.dataset.opis){
+		element.addEventListener('mouseover', function(e){vratiKoordinate(e)})
+		element.addEventListener('mouseover', opisBaloncici)
+		element.addEventListener('mouseout', function(){
+				window.clearTimeout(opisB)
+				var baloncic = document.getElementsByClassName('thought')[0]
+				if (baloncic){
+					baloncic.remove();
+				}
+			})
+		}}
 
 
+function napraviBaloncic(e){
+	var vpSirina = window.innerWidth
+	var vpVisina = window.innerHeight
+
+	cY -= 180
+	cX -= cX / 2
+
+	var div = document.createElement('div')
+	var body = document.getElementsByTagName('body')[0]
+	div.classList.add('thought')
+	div.innerText = opisTekst(e.dataset.opis)
+	div.style.top = cY + 'px'
+	div.style.left = cX + 'px'
+	body.appendChild(div)
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function vratiKoordinate(event){
+	sX = event.screenX
+	sY = event.screenY
+	cX = event.clientX
+	cY = event.clientY
+	return sX, sY, cX, cY
+}
 
 
 

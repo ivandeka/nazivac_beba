@@ -250,6 +250,7 @@ input:checked + .slider:before {
     margin: 0;
     padding: 0;
     display: none;
+    box-shadow: 4px 4px 8px black;
 }
 
 #iksic {
@@ -470,11 +471,20 @@ li {
     border-radius: 1rem;
     cursor: pointer;
     transition: ease all .2s;
+    background-color: rgba(255,255,255,.3)
 }
 
-.omotacZaJezik:hover {
+
+
+button.omotacZaJezik:hover {
     transition: ease all .2s;
     box-shadow: 2px 2px 4px black;
+    background-color: transparent;
+}
+
+button.omotacZaJezik:disabled:hover {
+    background-color: gray;
+    box-shadow: none;
 }
 
 .odabraniJezik {
@@ -497,7 +507,7 @@ li {
     border-radius: 1rem;
     line-height: 1.5rem;
     float: right;
-    padding: 4px 0 4px 10px;
+    padding: 4px;
     margin-top: 0.7rem;
 }
 
@@ -621,38 +631,82 @@ img.panelIkonica {
     bottom: .5rem;
 }
 
-
-
-/*.defaultDugme {
+#favoriti {
     width: 3.5rem;
-    height: 3.5rem;
-    background-color: rgba(255,255,255,.5);
     position: absolute;
-    right: -4rem;
-    top: 0;
-    background-image: url('https://www.flaticon.com/svg/static/icons/svg/1828/1828970.svg');
-    transition: ease all .2s;
-    background-size: 2rem 2rem;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 1rem;
+    bottom: 10px;
+    left: 215px;
 }
 
-.defaultDugme:hover {
-    background-image: url('https://www.flaticon.com/svg/static/icons/svg/1828/1828884.svg');
+img.zvezdica {
+    width: 2rem;
+    height: 3.2rem;
+    background-color: rgba(255,255,255,.8);
+    padding: 0 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: ease all .3s;
 }
-*/
+
+img.zvezdica:hover {
+    transition: ease all .3s;
+    background-color: rgba(255,255,255,0);
+}
+
+img.oznacena {
+    background-color: rgba(255,255,255,1);
+}
+
+#baloncic {
+    background-color: white;
+    border-radius: 20px;
+    padding: .5rem 1rem;
+    position: absolute;
+    /*max-width: 16rem;*/
+}
 
 
-
-
-
-
-
-
-
-
-
+.thought {
+  display:flex;
+  background-color:#fff;
+  padding:20px;
+  border-radius:30px;
+  min-width:40px;
+  max-width:220px;
+  min-height:40px;
+  margin:20px;
+  position:absolute;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.thought:before,
+.thought:after {
+  content:"";
+  background-color:#fff;
+  border-radius:50%;
+  display:block;
+  position:absolute;
+  z-index:-1;
+}
+.thought:before {
+  width:44px;
+  height:44px;
+  top:-12px;
+  left:28px;
+  box-shadow:-50px 30px 0 -12px #fff;
+}
+.thought:after {
+  bottom:-10px;
+  right:26px;
+  width:30px;
+  height:30px;
+  box-shadow:40px -34px 0 0 #fff,
+             -28px -6px 0 -2px #fff,
+             -24px 17px 0 -6px #fff,
+             -5px 25px 0 -10px #fff;
+  
+}
 
 
         
