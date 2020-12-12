@@ -123,17 +123,43 @@ function kraj(){
 	
 }
 
+// function odbrojavanje(odKoliko){
+// 	const o = odKoliko * 1000
+//     for (let i = odKoliko; i > 0; i--){
+//         setTimeout(function(){
+//         	t.innerText = i;
+// 			var audio = new Audio('src/beep.wav');
+// 			audio.play();
+//         	t.style.display = "block";
+//         }, o - (i * 1000));
+//         setTimeout(function(){
+//         	t.style.display = "none";
+//         }, o - (i * 1000 - 500));
+//     }
+// }
+
+
 function odbrojavanje(odKoliko){
 	const o = odKoliko * 1000
     for (let i = odKoliko; i > 0; i--){
         setTimeout(function(){
-        	t.innerText = i;
+        	var stringI = i.toString()
+        	for (let j = 0; j < stringI.length; j++){
+        		var img = document.createElement('img')
+        		var listaBrojeva = crtaniBrojevi[Number(stringI[j], 10)]
+        		img.src = `${ listaBrojeva[Math.floor(Math.random() * listaBrojeva.length)] }`
+        		img.style.height = '500px'
+        		img.style.width = 'auto'
+        		t.appendChild(img)
+        	}
+        	// t.innerText = i;
 			var audio = new Audio('src/beep.wav');
 			audio.play();
         	t.style.display = "block";
         }, o - (i * 1000));
         setTimeout(function(){
         	t.style.display = "none";
+        	removeAllChildNodes(t)
         }, o - (i * 1000 - 500));
     }
 }
