@@ -679,6 +679,7 @@ img.oznacena {
   align-items:center;
   justify-content:center;
   text-align:center;
+  word-wrap: anywhere;
 }
 .thought:before,
 .thought:after {
@@ -708,5 +709,3 @@ img.oznacena {
   
 }
 
-
-        

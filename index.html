@@ -19,6 +19,7 @@
 
 <body>
 
+
     <div id="dugmeZaModal" onclick="otvoriModal();"></div>
 
     <div id="jezici">
@@ -84,25 +85,25 @@
     <p id="test"><span id="prethodnik"></span><span id="sledbenik"></span></p>
 
     <div id="omotacPodesavanja">
-        <div id="podesavanjaJezicak">
+        <div id="podesavanjaJezicak" data-opis="podesavanjaOpis">
             <img src="src/nerd-emoji-svgrepo-com.svg" class="zatvoreno">
         </div>
         <div id="podesavanjaPanel">
             <div class="red">
-                <img class="panelIkonica" src="src/stopwatch-svgrepo-com.svg">
+                <img class="panelIkonica" src="src/stopwatch-svgrepo-com.svg" data-opis="odbrojavanjeOpis">
                 <input type="Number" name="odbrojavanje">
             </div>
             <div class="red">
-                <img class="panelIkonica" src="src/letter-a-and-pen-svgrepo-com.svg">
+                <img class="panelIkonica" src="src/letter-a-and-pen-svgrepo-com.svg" data-opis="poSlovuOpis">
                 <input type="Number" name="vremeZaSlovo">
             </div>
             <div class="red">
-                <img class="panelIkonica" src="src/baby-svgrepo-com.svg">
+                <img class="panelIkonica" src="src/baby-svgrepo-com.svg" data-opis="brojBebaOpis">
                 <input type="Number" name="brojBeba">
             </div>
             <div class="red">
                 <img id="snimiPodesavanja" class="daNe" src="src/checked-success-svgrepo-com.svg">
-                <img id="otkaziPodesavanja" class="daNe" src="src/bomb-svgrepo-com.svg">
+                <img id="otkaziPodesavanja" class="daNe" src="src/bomb-svgrepo-com.svg" data-opis="otkaziOpis">
             </div>
             
         </div>

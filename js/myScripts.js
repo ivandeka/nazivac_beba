@@ -893,14 +893,13 @@ function napraviBaloncic(e){
 	var vpVisina = window.innerHeight
 
 	cY -= 180
-	cX -= cX / 2
 
 	var div = document.createElement('div')
 	var body = document.getElementsByTagName('body')[0]
 	div.classList.add('thought')
 	div.innerText = opisTekst(e.dataset.opis)
-	div.style.top = cY + 'px'
-	div.style.left = cX + 'px'
+	div.style.top = (cY >= vpVisina)? cY + 'px' : Math.max(250, cY) + 'px'
+	div.style.left = (cX >= vpSirina / 2)? Math.min(cX, vpSirina - 250) + 'px' : Math.max(15, cX - 250) + 'px'
 	body.appendChild(div)
 }
 
