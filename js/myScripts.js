@@ -1,6 +1,6 @@
 (function proveraIE(){
 	var userAgent = navigator.userAgent
-	if (userAgent.includes('MSIE')){
+	if (userAgent.includes('Trident')){
 		var body = document.getElementsByTagName('body')[0]
 
 		removeAllChildNodes(body);
