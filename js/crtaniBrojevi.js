@@ -60,7 +60,6 @@ const crtaniBrojevi = {
 		"src/9/number-9.svg"
 ],
 	0: [
-		"src/0/cibo00-Cibo00-Number-0.svg",
 		"src/0/Monster Number 10.svg",
 		"src/0/kablam-Number-Animals-10.svg"
 ]

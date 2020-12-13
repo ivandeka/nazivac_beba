@@ -213,13 +213,23 @@ function animirajBebu(kolicina){
 }
 
 function otvoriModal(){
+	const listaSlika = [
+		"src/modal/Artistic-Funny-Drawing-.jpg",
+		"src/modal/Chameleon.jpg",
+		"src/modal/drawing-kids-wallpapers.800x600.jpg",
+		"src/modal/Artistic-Funny-Drawing-.jpg",
+		"src/modal/artwork-1607869453909-878.jpg",
+		"src/modal/funny-dog-art-17-desktop-wallpaper.jpg"
+	]
     const modal = document.getElementById('modal')
     const modalOmotac = document.getElementById('modalWrap')
+    var randomSlika = listaSlika[Math.floor(Math.random() * listaSlika.length)]
     prikaziUnetaImena();
 	// imenaNaGomili();
 	izaberiSlovo();
     for (let i = 1; i <= 100; i++){
         setTimeout(function(){
+            modal.style.backgroundImage = `url(${randomSlika})`
             modalOmotac.style.display="block";
             modal.style.display="block";
             modalOmotac.style.backgroundColor="rgba(0,0,0," + i / 200 + ")"
@@ -286,14 +296,15 @@ function dodajImena(){
 function klikniDaObrisesIme(){
 	var sviIksevi = document.getElementsByClassName('brisanje')
 	for (var i = 0; i < sviIksevi.length; i++){
-		var string = sviIksevi[i].parentElement.firstChild.data
+		// var string = sviIksevi[i].parentElement.firstChild.data
+		// console.log(string)
 		sviIksevi[i].addEventListener('click', ukloniImenjesce)
 	}
 	prepoznajDodatoIme();
 }
 
-function ukloniImenjesce(element){
-	ukloniIme(this.parentElement.firstChild.data);
+function ukloniImenjesce(){
+	ukloniIme(this.parentElement.lastChild.innerText);
 	obrisiElement(this.parentElement);
 	prepoznajDodatoIme();
 }
@@ -421,21 +432,6 @@ function snimiPodesavanja(){
 function napraviKolacic(element, izmena){
 	const standardniDeo = 'path=/; sameSite=Strict'
 	const podrazumevani = localStorage.getItem('podrazumevaniJezik')
-	// var podrazumevaniJezik = localStorage.getItem('podrazumevaniJezik')
-	// if (podrazumevaniJezik){
-	// 	var j = podrazumevaniJezik.split('_')[0]
-	// 	var tj = podrazumevaniJezik.split('_')[1] || 'nema'
-	// 	document.cookie = 'pol=bata; ' + standardniDeo
-	// 	document.cookie = `jezik=${j}; ` + standardniDeo
-	// 	document.cookie = `tipJezika=${tj}; ` + standardniDeo
-	// 	return
-	// }
-	if (podrazumevani){
-		document.cookie = 'pol=bata; ' + standardniDeo
-		document.cookie = `jezik=${podrazumevani.split('_')[0]}; ` + standardniDeo
-		document.cookie = `tipJezika=${podrazumevani.split('_')[1] || 'nema'}; ` + standardniDeo
-		return
-	}
 
 	if (document.cookie === ''){
 		document.cookie = 'pol=bata; ' + standardniDeo
@@ -443,6 +439,12 @@ function napraviKolacic(element, izmena){
 		document.cookie = 'tipJezika=latinica; ' + standardniDeo
 		return
 	}
+
+	if (podrazumevani){
+		document.cookie = `jezik=${podrazumevani.split('_')[0]}; ` + standardniDeo
+		document.cookie = `tipJezika=${podrazumevani.split('_')[1] || 'nema'}; ` + standardniDeo
+	}
+
 	if (element){
 		document.cookie = `${element}=${izmena}; ` + standardniDeo
 	}
@@ -499,6 +501,7 @@ function promenaPola(){
         bata.style.color = 'purple'
         napraviKolacic('pol', 'bata')
     }
+    console.log(trenutniKolacic.pol)
     window.location.reload();
 }
 
