@@ -1,31 +1,3 @@
-(function proveraIE(){
-	var userAgent = navigator.userAgent
-	if (userAgent.includes('Trident')){
-		var body = document.getElementsByTagName('body')[0]
-
-		removeAllChildNodes(body);
-		body.style.backgroundImage = 'url()';
-		divWrap = document.createElement('div')
-		divWrap.style.width = '100%';
-		divWrap.style.height = '100%';
-
-		ieDiv = document.createElement('div')
-		ieDiv.style.backgroundImage = 'url("src/ie.gif")'
-		ieDiv.style.height = '300px';
-		ieDiv.style.width = '300px';
-		ieDiv.style.backgroundSize = 'contain';
-		ieDiv.style.backgroundRepeat = 'no-repeat';
-		ieDiv.style.margin = '100px auto 0 auto';
-
-		divTekst = document.createElement('div')
-		divTekst.id = 'ieTekst'
-
-		body.appendChild(divWrap)
-		divWrap.appendChild(ieDiv)
-		divWrap.appendChild(divTekst)
-	}
-}())
-
 
 var pol = document.getElementById('toggler').value
 var startDugme = document.getElementById('create')
