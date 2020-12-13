@@ -24,7 +24,7 @@
     <script type="text/javascript">
         (function proveraIE(){
             var userAgent = navigator.userAgent
-            if (/mozilla/i.test(userAgent)){
+            if (/trident/i.test(userAgent)){
                 const trenutnaLokacija = window.location + ''
                 var novaLokacija = trenutnaLokacija.split('/').slice(0,-1).join('/') + '/no-ie.html'
                 window.location = novaLokacija
