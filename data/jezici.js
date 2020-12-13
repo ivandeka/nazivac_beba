@@ -92,7 +92,7 @@ const jezici = {
 		}
 	},
 	"engleski": {
-		"zvezdicaOpis": "Click the star icon to save the langauage as default.",
+		"zvezdicaOpis": "Click the star icon to set the langauage as default",
 		"podesavanjaOpis": "Settings",
 		"odbrojavanjeOpis": "Countdown start",
 		"poSlovuOpis": "How many seconds to write single letter",
@@ -112,7 +112,7 @@ const jezici = {
 			"modalNaslov": "Boy names",
 			"inputPlaceholder": "For example: \"Splinter,Donatello, Leonadro,Michelangelo\"",
 			"inputBaloncic": "In order to add the names, make sure to separate them with comma.",
-			"inputOjasnjenje": "To add a name, divide them with comma and click on \"Add name(s)\"",
+			"inputOjasnjenje": "To add names, divide them with comma and click on \"Add name(s)\"",
 			"spisak": "The list of suggested names:",
 			"dodajImenaDugme": "Add name(s)",
 			"obrisiSve": "Delete all"
@@ -130,7 +130,7 @@ const jezici = {
 			"modalNaslov": "Girl names",
 			"inputPlaceholder": "For example: \"Gaga,Madonna, Beyonce,Rhianna\"",
 			"inputBaloncic": "In order to add the names, make sure to separate them with comma.",
-			"inputOjasnjenje": "To add a name, divide them with comma and click on \"Add name(s)\"",
+			"inputOjasnjenje": "To add names, divide them with comma and click on \"Add name(s)\"",
 			"spisak": "The list of suggested names:",
 			"dodajImenaDugme": "Add name(s)",
 			"obrisiSve": "Delete all"

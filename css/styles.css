@@ -3,7 +3,7 @@
         }
 
         body {
-            background-image: url('https://jooinn.com/images/balloons-12.jpg');
+            background-image: url('../src/balloons-12.jpg');
             background-size: cover;
             font-family: Verdana, sans-serif;
             overflow: hidden;
@@ -318,6 +318,7 @@ input:checked + .slider:before {
     border: 1px solid gray;
     border-radius: .5rem;
     padding-left: 10px;
+    font-size: 1rem;
 }
 
 #slanjeImena {
@@ -349,10 +350,11 @@ input:checked + .slider:before {
 }
 
 .objasnjenje {
-    font-size: 10px;
+    font-size: 12px;
+    min-width: 60%;
     color: gray;
     margin: 0 0 10px 10px;
-    padding: 0 0 0px 0;
+    padding: 40px 0 5px 0;
     background-color: rgba(255,255,45, .8);
 }
 
@@ -709,4 +711,46 @@ img.oznacena {
              -5px 25px 0 -10px #fff;
   
 }
+
+#ieTekst {
+    width: 150px;
+    height: 150px;
+    background-image: url('../src/1828666.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: -260px auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
