@@ -13,7 +13,7 @@
     <script type="text/javascript">
         (function proveraIE(){
             var userAgent = navigator.userAgent
-            if (userAgent.includes('Trident')){
+            if (/trident/i.test(userAgent)){
                 var body = document.getElementsByTagName('body')[0]
 
                 var html = document.getElementsByTagName('html')[0]
@@ -42,6 +42,7 @@
                 body.appendChild(divWrap)
                 divWrap.appendChild(ieDiv)
                 divWrap.appendChild(divTekst)
+                window.stop();
             }
         }())
     </script>
