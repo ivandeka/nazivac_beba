@@ -9,6 +9,17 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/confetti.js"></script>
+    <script type="text/javascript" src="js/circletype.js"></script>
+    <script type="text/javascript" src="js/crtaniBrojevi.js"></script>
+    <script type="text/javascript" src="data/jezici.js"></script>
+    <script type="text/javascript" src="data/imena.js"></script>
+
+</head>
+
+<body>
 
     <script type="text/javascript">
         (function proveraIE(){
@@ -17,12 +28,8 @@
                 var body = document.getElementsByTagName('body')[0]
 
                 var html = document.getElementsByTagName('html')[0]
-                html.removeChild(document.body)
+                document.body.innerHtml=""
 
-                b = document.createElement('body')
-                html.appendChild(b)
-
-                // removeAllChildNodes(body);
                 body.style.backgroundImage = 'url()';
                 divWrap = document.createElement('div')
                 divWrap.style.width = '100%';
@@ -46,17 +53,6 @@
             }
         }())
     </script>
-    
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <script type="text/javascript" src="js/confetti.js"></script>
-    <script type="text/javascript" src="js/circletype.js"></script>
-    <script type="text/javascript" src="js/crtaniBrojevi.js"></script>
-    <script type="text/javascript" src="data/jezici.js"></script>
-    <script type="text/javascript" src="data/imena.js"></script>
-
-</head>
-
-<body>
 
 
     <div id="dugmeZaModal" onclick="otvoriModal();"></div>
