@@ -855,9 +855,9 @@ class IzvlacenjeImena {
 
 	constructor(srecko){
 		this.bubnjevi = document.getElementById('drumRoll')
-		this.bubnjevi = new Audio('src/drum.wav')
+		this.bubnjevi = new Audio('src/drum.mp3')
 		this.bubnjevi.loop = true
-		// this.trube = new Audio('src/yeeey.wav')
+		// this.trube = new Audio('src/yeeey.mp3')
 
 		this.slova = jezik.vratiTrenutniJezik().azbuka.split(',')
 		this.divZaPisanje = document.getElementById('prethodnik')
@@ -894,7 +894,7 @@ class IzvlacenjeImena {
 	        		img.style.width = 'auto'
 	        		t.appendChild(img)
 	        	}
-				const audio = new Audio('src/beep.wav')
+				const audio = new Audio('src/beep.mp3')
 				audio.play();
 	        	t.style.display = "block";
 	        }, o - (i * 1000));
@@ -973,8 +973,8 @@ class IzvlacenjeImena {
 	kraj(){
 		confetti.start()
 
-		new Audio('src/yeeey.wav').play()
-		setInterval(function(){new Audio('src/yeeey.wav').play()}, (Math.random() * 2500 + 2000))
+		new Audio('src/yeeey.mp3').play()
+		setInterval(function(){new Audio('src/yeeey.mp3').play()}, (Math.random() * 2500 + 2000))
 
 		var tekst = document.getElementById('prethodnik')
 		var boje = "#FFEE33,#E9D817,#2A009C,#5017E9,#450003,#5C0002,#94090D,#D40D12,#FF1D23,#00305A,#004B8D,#0074D9,#4192D9,#7ABAF2".split(',')
