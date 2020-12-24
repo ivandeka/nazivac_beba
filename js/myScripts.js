@@ -855,7 +855,7 @@ class IzvlacenjeImena {
 
 	constructor(srecko){
 		this.bubnjevi = document.getElementById('drumRoll')
-		this.bubnjevi = new Audio('src/drum.mp3')
+		this.bubnjevi = new Audio('src/drum.wav')
 		this.bubnjevi.loop = true
 		// this.trube = new Audio('src/yeeey.wav')
 
@@ -894,7 +894,7 @@ class IzvlacenjeImena {
 	        		img.style.width = 'auto'
 	        		t.appendChild(img)
 	        	}
-				var audio = new Audio('src/beep.wav');
+				const audio = new Audio('src/beep.wav')
 				audio.play();
 	        	t.style.display = "block";
 	        }, o - (i * 1000));
