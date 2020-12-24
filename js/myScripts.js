@@ -439,10 +439,6 @@ class OpisBaloncic {
 
 }
 
-class Slike {
-	
-}
-
 class Modal {
 
 	constructor(){
