@@ -989,7 +989,7 @@ class IzvlacenjeImena {
 
 class Beba {
 	constructor(){
-		this.sirinaPolja = window.innerWidth
+		this.sirinaPolja = window.innerWidth - 300
 		this.velicine = [75, 150, 200, 250, 300, 350, 400, 450, 500]
 		this.brzine = [0.5, 0.75, 0.9, 0.67, 1, 1.2, 1.5, 2]
 		this.velicina = this.velicine[Math.floor(Math.random() * this.velicine.length)]
