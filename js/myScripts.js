@@ -614,6 +614,7 @@ var indeks = new class Indeks {
 		}
 
 		window.addEventListener('load', function(){
+			preFetch()
 			window.location.href + '#wrapper'
 			new Pol().ofarbajToggler()
 			jezik.startJezikDivova()
@@ -1115,10 +1116,6 @@ function preFetch(){
 	}
 }
 
-
-
-
-preFetch()
 
 
 
