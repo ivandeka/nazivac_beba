@@ -857,7 +857,7 @@ class IzvlacenjeImena {
 		this.bubnjevi = document.getElementById('drumRoll')
 		this.bubnjevi = new Audio('src/drum.mp3')
 		this.bubnjevi.loop = true
-		// this.trube = new Audio('src/yeeey.mp3')
+		// this.trube = new Audio('src/yeeey.wav')
 
 		this.slova = jezik.vratiTrenutniJezik().azbuka.split(',')
 		this.divZaPisanje = document.getElementById('prethodnik')
@@ -958,7 +958,6 @@ class IzvlacenjeImena {
 		if ((this.srecko === 'srecko') || (this.srecko !== 'srecko' && predlozenaImena)){
 			this.blokiraj()
 			let wrapZaDugmice = document.getElementById('wrapZaDugmice')
-			console.log(wrapZaDugmice)
 			wrapZaDugmice.style.opacity = '0'
 			wrapZaDugmice.style.height = '0'
 			this.drugiKorak()
