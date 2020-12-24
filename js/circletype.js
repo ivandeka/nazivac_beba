@@ -701,7 +701,7 @@
                                     c = -.5 * t._metrics[r].width / t._fontSize,
                                     a = "translateX(".concat(c, "em) rotate(").concat(u, "deg)");
                                     var arsaColor = "#FFEE33,#E9D817,#2A009C,#5017E9,#450003,#5C0002,#94090D,#D40D12,#FF1D23,#00305A,#004B8D,#0074D9,#4192D9,#7ABAF2".split(',')
-                                o.position = "absolute", o.bottom = -1 === e ? 0 : "auto", o.left = "50%", o.transform = a, o.transformOrigin = i, o.webkitTransform = a, o.webkitTransformOrigin = i, setInterval(function(){o.color = arsaColor[Math.floor(Math.random() * arsaColor.length)]}, 500);
+                                o.position = "absolute", o.bottom = -1 === e ? 0 : "auto", o.left = "50%", o.transform = a, o.transformOrigin = i, o.webkitTransform = a, o.webkitTransformOrigin = i, (function(){o.color = arsaColor[Math.floor(Math.random() * arsaColor.length)]}()), setInterval(function(){o.color = arsaColor[Math.floor(Math.random() * arsaColor.length)]}, 500);
                             })), this._forceHeight) {
                             var p = l > 180 ? c(n, l) : c(o, l) + this._lineHeight;
                             this.container.style.height = "".concat(p / this._fontSize, "em")
