@@ -8,6 +8,17 @@
             font-family: Verdana, sans-serif;
             overflow: hidden;
         }
+
+        body:after{
+            display: none;
+            content: 
+            url("src/modal/Artistic-Funny-Drawing-.jpg"),
+            url("src/modal/Chameleon.jpg"),
+            url("src/modal/drawing-kids-wallpapers.800x600.jpg"),
+            url("src/modal/Artistic-Funny-Drawing-.jpg"),
+            url("src/modal/artwork-1607869453909-878.jpg"),
+            url("src/modal/funny-dog-art-17-desktop-wallpaper.jpg");
+        }
         
         p {
             display: block;
