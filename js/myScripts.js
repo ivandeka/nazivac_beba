@@ -1091,6 +1091,53 @@ class MojeKerefeke {
 }
 
 
+function preFetch(){
+	let zaPreFetch = [
+		"src/balloons-12.jpg",
+		"src/modal/Artistic-Funny-Drawing-.jpg",
+		"src/modal/Chameleon.jpg",
+		"src/modal/drawing-kids-wallpapers.800x600.jpg",
+		"src/modal/Artistic-Funny-Drawing-.jpg",
+		"src/modal/artwork-1607869453909-878.jpg",
+		"src/modal/funny-dog-art-17-desktop-wallpaper.jpg"
+	]
+
+	for (kljuc of Object.keys(crtaniBrojevi)){
+		let vrednost = crtaniBrojevi[kljuc]
+		zaPreFetch = zaPreFetch.concat(vrednost)
+	}
+
+	for (link of zaPreFetch){
+		let l =document.createElement('link')
+		l.rel = "prefetch"
+		l.href = link
+		document.head.appendChild(l)
+	}
+}
+
+
+
+
+preFetch()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
