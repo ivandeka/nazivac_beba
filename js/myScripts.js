@@ -292,7 +292,8 @@ class PanelPodesavanja {
 	otvori(e){
 		this.trenutnaPodesavanja()
 		this.panel.style.right = '0'
-		e.style.right = '12rem'
+		// e.style.right = '12rem'
+		e.style.right = '192px'
 		e.classList.remove('zatvoreno')
 		e.classList.add('otvoreno')
 		for (let input of this.inputi){
@@ -302,15 +303,20 @@ class PanelPodesavanja {
 
 	zatvori(e){
 		setTimeout(function(){
-			this.panel.style.right = '-12rem'
+			// this.panel.style.right = '-12rem'
+			this.panel.style.right = '-192px'
 			e.classList.remove('otvoreno')
 			e.classList.add('zatvoreno')
 		}.bind(this), 200)
-		this.panel.style.right = '3rem'
-		e.style.bottom = '6rem'
-		setTimeout(function(){e.style.bottom = '-6rem'}, 100)
+		// this.panel.style.right = '3rem'
+		this.panel.style.right = '48px'
+		// e.style.bottom = '6rem'
+		e.style.bottom = '96px'
+		// setTimeout(function(){e.style.bottom = '-6rem'}, 100)
+		setTimeout(function(){e.style.bottom = '-96px'}, 100)
 		setTimeout(function(){e.style.right = '0'}, 300)
-		setTimeout(function(){e.style.bottom = '.5rem'}, 700)
+		// setTimeout(function(){e.style.bottom = '.5rem'}, 700)
+		setTimeout(function(){e.style.bottom = '8px'}, 700)
 		for (let input of this.inputi){
 			input.tabIndex = '-1'
 		}
@@ -772,7 +778,7 @@ class ImenaUSesiru {
 			li.appendChild(span)
 			li.appendChild(span2)
 			list.appendChild(li)
-			list.lastChild.style.paddingBottom = '1rem'
+			list.lastChild.style.paddingBottom = '16px'
 		}
 	}
 

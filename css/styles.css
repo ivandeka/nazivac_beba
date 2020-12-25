@@ -602,14 +602,18 @@ img {
 }
 
 #podesavanjaPanel {
-    height: 15rem;
-    width: 12rem;
+    /*height: 15rem;*/
+    /*width: 12rem;*/
     background-color: rgba(255,255,255,.7);
     border-radius: 1rem;
     position: absolute;
-    bottom: .5rem;
-    right: -12rem;
+    /*bottom: .5rem;*/
+    /*right: -12rem;*/
+    bottom: 8px;
+    right: -192px;
     transition: ease all .5s;
+    height: 240px;
+    width: 192px;
 }
 
 .red {
