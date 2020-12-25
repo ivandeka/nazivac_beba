@@ -592,10 +592,12 @@ img {
 
 
 #podesavanjaJezicak {
-    width: 3.5rem;
-    height: 3.5rem;
+    /*width: 3.5rem;*/
+    /*height: 3.5rem;*/
+    width: 56px;
+    height: 56px;
     position: absolute;
-    bottom: .5rem;
+    bottom: 4px;
     right: 0;
     transition: ease all .6s;
     cursor: pointer;
@@ -609,10 +611,8 @@ img {
     position: absolute;
     /*bottom: .5rem;*/
     /*right: -12rem;*/
-    /*bottom: 8px;*/
-    /*right: -192px;*/
-    margin-bottom: 8px;
-    margin-right: -192px;
+    bottom: 8px;
+    right: -192px;
     transition: ease all .5s;
     height: 240px;
     width: 192px;
