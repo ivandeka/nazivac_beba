@@ -776,6 +776,7 @@ img.oznacena {
     bottom: 0;
     width: 100%;
     z-index: -100;
+    overflow: hidden;
 }
 
 
@@ -854,6 +855,7 @@ img.oznacena {
     position: absolute;
     bottom: 2px;
     right: 0;
+    overflow: hidden;
 }
 
 
