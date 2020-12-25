@@ -616,6 +616,7 @@ img {
     transition: ease all .5s;
     height: 240px;
     width: 192px;
+    overflow: hidden;
 }
 
 .red {
@@ -855,7 +856,7 @@ img.oznacena {
     position: absolute;
     bottom: 2px;
     right: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 
