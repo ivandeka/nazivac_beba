@@ -879,6 +879,33 @@ class IzvlacenjeImena {
 		return this.slova[Math.floor(Math.random() * this.slova.length)]
 	}
 
+	// odbrojavanje(){
+	// 	const o = cfg.config.odbrojavanje * 1000
+	// 	const odKoliko = cfg.config.odbrojavanje
+	// 	var t = document.getElementById('timer')
+	//     for (let i = odKoliko; i > 0; i--){
+	//         setTimeout(function(){
+	//         	var stringI = i.toString()
+	//         	for (let j = 0; j < stringI.length; j++){
+	//         		var img = document.createElement('img')
+	//         		var listaBrojeva = crtaniBrojevi[Number(stringI[j], 10)]
+	//         		img.src = `${ listaBrojeva[Math.floor(Math.random() * listaBrojeva.length)] }`
+	//         		img.style.height = '500px'
+	//         		img.style.width = 'auto'
+	//         		t.appendChild(img)
+	//         	}
+	// 			const audio = new Audio('src/beep.mp3')
+	// 			audio.play();
+	//         	t.style.display = "block";
+	//         }, o - (i * 1000));
+	//         setTimeout(function(){
+	//         	t.style.display = "none";
+	//         	new Element(t).obrisiSvuDecu()
+	//         }, o - (i * 1000 - 500));
+	//     }
+	//     return o
+	// }
+
 	odbrojavanje(){
 		const o = cfg.config.odbrojavanje * 1000
 		const odKoliko = cfg.config.odbrojavanje
@@ -989,7 +1016,7 @@ class IzvlacenjeImena {
 class Beba {
 	constructor(){
 		this.sirinaPolja = window.innerWidth - 300
-		this.velicine = [75, 150, 200, 250, 300, 350, 400, 450, 500]
+		this.velicine = [100, 150, 200, 250, 300, 350, 400, 450]
 		this.brzine = [0.5, 0.75, 0.9, 0.67, 1, 1.2, 1.5, 2]
 		this.velicina = this.velicine[Math.floor(Math.random() * this.velicine.length)]
 		this.startnaSirina = Math.floor(Math.random() * this.sirinaPolja)
@@ -1017,11 +1044,9 @@ class Beba {
 		bb.style.transition = 'ease all ' + brzina + 's'
 		var interval = brzina * 1000
 		setInterval(function(){
-			bb.style.bottom = this.startnaVisina + Math.floor(Math.random() * this.velicina) + 'px';
+			let naGore = this.startnaVisina + Math.floor(Math.random() * this.velicina) + 'px';
+			bb.style.bottom = (Math.random() > .5)? naGore : -naGore
 		}.bind(this), interval)
-		setInterval(function(){
-			bb.style.bottom = this.startnaVisina + 'px'
-		}, interval)
 	}
 
 	obrisiSveBebe(){
