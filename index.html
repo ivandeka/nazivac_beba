@@ -34,6 +34,10 @@
         }())
     </script>
 
+    <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
+    <audio id="yeeey" src='src/yeeey.mp3' type="audio/mpeg"></audio>
+    <audio id="beep" src='src/beep.mp3' type="audio/mpeg"></audio>
+
     <div id="finale"></div>
     <div id="dugmeZaModal"></div>
 
@@ -88,30 +92,31 @@
         <span class="zaToggler" id="seka"></span>
     </div>
     
-    <div id="timer"></div>
+    <div id="velikiWrapper">
 
-    <div id="wrapZaDugmice">
-        <div id="wrCr">
-            <button id="create" data-opis="saznajOpis"></button>
-            <img id="upitnici" src="src/upitnici.svg">
+        <div id="timer"></div>
+
+        <div id="wrapZaDugmice">
+            <div id="wrCr">
+                <button id="create" data-opis="saznajOpis"></button>
+                <img id="upitnici" src="src/upitnici.svg">
+            </div>
+            <div id="wr">
+                <button id="srecko" data-opis="sreckoOpis"></button>
+                <img id="detelina" src="src/detelina.svg">
+            </div>
         </div>
-        <div id="wr">
-            <button id="srecko" data-opis="sreckoOpis"></button>
-            <img id="detelina" src="src/detelina.svg">
-        </div>
+
+        <p id="zvaceSe"></p>
+        <p id="test"><span id="prethodnik"></span><span id="sledbenik"></span></p>
+
     </div>
-
-    <audio id="drumRoll" src='src/drum.mp3' type="audio/mpeg" loop></audio>
-    <audio id="yeeey" src='src/yeeey.mp3' type="audio/mpeg"></audio>
-    <audio id="beep" src='src/beep.mp3' type="audio/mpeg"></audio>
-
-    <p id="zvaceSe"></p>
-    <p id="test"><span id="prethodnik"></span><span id="sledbenik"></span></p>
 
     <div id="omotacPodesavanja">
         <div id="podesavanjaJezicak" data-opis="podesavanjaOpis" class="zatvoreno">
             <img src="src/nerd-emoji-svgrepo-com.svg" class="zatvoreno">
         </div>
+
         <div id="podesavanjaPanel">
             <div class="red">
                 <img class="panelIkonica" src="src/stopwatch-svgrepo-com.svg" data-opis="odbrojavanjeOpis">
@@ -131,6 +136,7 @@
             </div>
             
         </div>
+
     </div>
     <div id="bbWrapper"></div>
     <script type="text/javascript" src="js/myScripts.js"></script>
