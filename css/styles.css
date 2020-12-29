@@ -86,7 +86,7 @@
         #timer {
             display: none;
             width: 75%;
-            height: 75%;
+            /*height: 100%;*/
             font-size: 35em;
             color: purple;
             position: absolute;
@@ -363,10 +363,11 @@ input:checked + .slider:before {
 
 .objasnjenje {
     font-size: 12px;
-    min-width: 60%;
+    width: 85%;
     color: gray;
-    margin: 0 0 10px 10px;
-    padding: 40px 0 5px 0;
+    padding: 3px;
+    margin: 40px auto 10px auto;
+    border-radius: 5px;
     background-color: rgba(255,255,45, .8);
 }
 
@@ -546,13 +547,13 @@ img {
 }
 
 .pocetnoSlovo {
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     display: inline-block;
-    border: 2px solid purple;
     border-radius: 5px;
     margin: 2px;
     background-color: white;
+    background-color: transparent;
     transition: ease all .2s;
     color: purple;
 }
